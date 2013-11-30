@@ -3,35 +3,29 @@
 #include <opencv2/imgproc/imgproc.hpp>
 
 using namespace std;
+using namespace cv;
 
 #define CAMERA_OUTPUT_WINDOW_NAME "camera-output"
 
 int main(int argc, char **argv)
 {
-    CvCapture *camCapture;
-    int ret = 0;
+    VideoCapture camStream(CV_CAP_ANY);
 
-    if (!(camCapture = cvCaptureFromCAM(CV_CAP_ANY))) {
-        cout << "Failed to capture from camera" << endl;
-
-        ret = 1;
-
-        goto exitCameraOpenFailed;
+    if(!camStream.isOpened())
+    {
+        cout << "Cannot open cam" << endl;
+        return -1;
     }
-
     cout << "Camera opened successfully" << endl;
 
     cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
 
-    IplImage *cameraFrame;
-    int grabFrameRet;
-
     while (true) {
-        if ((cameraFrame = cvQueryFrame(camCapture))) {
-            cvShowImage(CAMERA_OUTPUT_WINDOW_NAME, cameraFrame);
-        }
-
-        if (cvWaitKey(60) != -1) {
+        Mat cameraFrame;
+        camStream >> cameraFrame;
+        if (cameraFrame.dims != 0)
+            imshow(CAMERA_OUTPUT_WINDOW_NAME, cameraFrame);
+        if (waitKey(30) == 27) {
             cout << "Input" << endl;
             break;
         }
@@ -39,8 +33,6 @@ int main(int argc, char **argv)
 
     cout << "Done" << endl;
 
-    cvReleaseCapture(&camCapture);
     cvDestroyWindow(CAMERA_OUTPUT_WINDOW_NAME);
-exitCameraOpenFailed:
-    return ret;
+    return 1;
 }
