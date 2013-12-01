@@ -32,6 +32,7 @@ int main(int argc, char **argv)
     
     theremax_audio_start();
     theremax_cv_thread_init();
+    theremax_cv_thread_start();
     while(1)
     {
         // cerr << Globals::cvIntensity << endl;

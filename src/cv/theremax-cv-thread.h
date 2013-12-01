@@ -8,9 +8,12 @@
 #ifndef __THEREMAX_CV_THREAD_H__
 #define __THEREMAX_CV_THREAD_H__
 
+#include <stdio.h>
 #include "theremax-globals.h"
 #include "x-thread.h"
 #include "theremax-cv.h"
+
+using namespace std;
 
 // init cv
 bool theremax_cv_thread_init();

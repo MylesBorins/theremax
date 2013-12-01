@@ -21,13 +21,10 @@ public:
     ~TheremaxCV();
 public:
     bool init();
-    bool start();
-    bool stop();
+    void getIntensity();
+    void process();
 public:
-    void routine();
     cv::VideoCapture * camStream;
-protected:
-    XThread * xthread;
 };
 
 #endif

@@ -29,28 +29,59 @@ void _getBrightness(const Mat& frame, double& brightness)
 TheremaxCV::~TheremaxCV()
 {
     delete camStream;
-    delete xthread;
+    cvDestroyWindow(CAMERA_OUTPUT_WINDOW_NAME);
 }
 
 bool TheremaxCV::init()
+    
 {
     camStream = new cv::VideoCapture(CV_CAP_ANY);
-    xthread = new XThread;
-    if(!camStream->isOpened())
-    {
-        cout << "Cannot open cam" << endl;
-        return -1;
-    }
-    cout << "Camera opened successfully" << endl;
+    cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
     return true;
+    
+    // cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
+//     camStream = new cv::VideoCapture(CV_CAP_ANY);
+//     if(!camStream->isOpened())
+//     {
+//         cout << "Cannot open cam" << endl;
+//         return -1;
+//     }
+//     cout << "Camera opened successfully" << endl;
+//     while(true)
+//     {
+//         getIntensity();
+//         cerr << Globals::cvIntensity << endl;
+//     }
+//     return true;
 };
 
-
-
-
-    // VideoCapture camStream(CV_CAP_ANY);
-
+void TheremaxCV::process()
+{
+    Mat cameraFrame;
     
+    camStream->read(cameraFrame);
+    if (cameraFrame.dims != 0)
+    {
+        Mat frameHSV;
+        double brightness;
+        _getBrightness(cameraFrame, brightness);
+        Globals::cvIntensity *= 0.5;
+        Globals::cvIntensity += (brightness * 0.5);
+    }
+    waitKey(30);
+}
+
+void TheremaxCV::getIntensity()
+{
+    Mat cameraFrame;
+    camStream->read(cameraFrame);
+    Mat frameHSV;
+    double brightness;
+    _getBrightness(cameraFrame, brightness);
+    Globals::cvIntensity *= 0.5;
+    Globals::cvIntensity += (brightness * 0.5);
+}
+        // 
     // 
     // cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
     // 
