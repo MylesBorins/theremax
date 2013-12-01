@@ -4,7 +4,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include "theremax-audio.h"
 #include "theremax-globals.h"
-#include "theremax-cv.h"
+#include "theremax-cv-thread.h"
 
 
 using namespace std;
@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     // }
     
     theremax_audio_start();
-    
+    theremax_cv_thread_init();
     while(1)
     {
         // cerr << Globals::cvIntensity << endl;

@@ -164,6 +164,9 @@ set(core_SOURCES
   ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv.cpp
   ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv.h
   
+  ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv-thread.cpp
+  ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv-thread.h
+  
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-entity.cpp
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-entity.h
   

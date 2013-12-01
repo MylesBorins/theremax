@@ -18,14 +18,14 @@
 class TheremaxCV
 {
 public:
-    TheremaxCV();
     ~TheremaxCV();
 public:
-    static bool init();
-    static bool start();
-    static bool stop();
+    bool init();
+    bool start();
+    bool stop();
 public:
     void routine();
+    cv::VideoCapture * camStream;
 protected:
     XThread * xthread;
 };

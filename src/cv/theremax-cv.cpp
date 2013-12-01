@@ -26,16 +26,31 @@ void _getBrightness(const Mat& frame, double& brightness)
     brightness = summ[0]/((::pow(2,8)-1)*frame.rows * frame.cols) * 2; //-- percentage conversion factor
 }
 
-bool theremax_cv_init( )
+TheremaxCV::~TheremaxCV()
 {
-    VideoCapture camStream(CV_CAP_ANY);
+    delete camStream;
+    delete xthread;
+}
 
-    // if(!camStream.isOpened())
-    // {
-    //     cout << "Cannot open cam" << endl;
-    //     return -1;
-    // }
-    // cout << "Camera opened successfully" << endl;
+bool TheremaxCV::init()
+{
+    camStream = new cv::VideoCapture(CV_CAP_ANY);
+    xthread = new XThread;
+    if(!camStream->isOpened())
+    {
+        cout << "Cannot open cam" << endl;
+        return -1;
+    }
+    cout << "Camera opened successfully" << endl;
+    return true;
+};
+
+
+
+
+    // VideoCapture camStream(CV_CAP_ANY);
+
+    
     // 
     // cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
     // 
@@ -62,10 +77,3 @@ bool theremax_cv_init( )
     // cout << "Done" << endl;
     // camStream.release();
     // cvDestroyWindow(CAMERA_OUTPUT_WINDOW_NAME);
-    return 1;
-}
-
-bool theremax_cv_start( )
-{
-    return 1;
-};
