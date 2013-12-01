@@ -1,5 +1,5 @@
 #Theremax
-##By Myles Borins
+By Myles Borins
 ---
 ###How to do?
 cmake .
