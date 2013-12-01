@@ -3,6 +3,7 @@
 #include <highgui.h>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "theremax-audio.h"
+#include "theremax-globals.h"
 
 
 using namespace std;
@@ -32,6 +33,14 @@ void _getBrightness(const Mat& frame, double& brightness)
 
 int main(int argc, char **argv)
 {
+    
+    // start real-time audio
+    if ( !theremax_audio_init( THEREMAX_SRATE, THEREMAX_FRAMESIZE, THEREMAX_NUMCHANNELS ) )
+    {
+        // error message
+        cerr << "[theremax]: cannot initialize real-time audio I/O.." << endl;
+        return -1;
+    }
     VideoCapture camStream(CV_CAP_ANY);
 
     if(!camStream.isOpened())

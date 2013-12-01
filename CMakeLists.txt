@@ -14,17 +14,56 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
   if(JACK_FOUND)
     add_definitions(-D__UNIX_JACK__)
     include_directories( ${JACK_INCLUDE_DIRS} )
-    set( AUDIO_LIBRARIES ${JACK_LIBRARY} )
+    set( LIBS 
+      ${LIBS}
+      ${JACK_LIBRARY}
+    )
   endif(JACK_FOUND)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-  # add_definitions(-D__MACOSX_CORE__)
-  # find_library(COREAUDIO_LIBRARY CoreAudio)
-    # if(COREAUDIO_LIBRARY_FOUND)
-      
-      # set( AUDIO_LIBRARIES ${COREAUDIO_LIBRARY})
-    # endif(COREAUDIO_LIBRARY_FOUND)
+  message("You are on osx, so lets setup coreaudio")
+  
+  # setting up foundation can be a pain
+  add_definitions(-D__MACOSX_CORE__)
+  
+  # Setup core audio
+  find_path(COREAUDIO_INCLUDE_PATH CoreAudio.h)
+  find_library(COREAUDIO_LIBRARY CoreAudio)
+  
+  # setup core midi
+  find_path(COREMIDI_INCLUDE_PATH CoreMidi.h)
+  find_library(COREMIDI_LIBRARY CoreMidi)
+  find_library(COREFOUNDATION_LIBRARY CoreFoundation)
+  
+  # setup carbon
+  find_library(CARBON_LIBRARY Carbon)
+  
+  # setup IOKit
+  find_library(IOKIT_LIBRARY IOKit)
+  
+  # setup Foundation
+  find_library(FOUNDATION_LIBRARY Foundation)
+  
+  
+  # setup AppKit
+  find_library(APPKIT_LIBRARY AppKit)
+  
+  
+  # get includes updated
+  include_directories(${COREAUDIO_INCLUDE_PATH})
+  include_directories(${COREMIDI_INCLUDE_PATH})
+  
+  # libraries will be linked later
+  set( LIBS
+    ${LIBS}
+    ${COREAUDIO_LIBRARY}
+    ${COREMIDI_LIBRARY}
+    ${CARBON_LIBRARY}
+    ${IOKIT_LIBRARY}
+    ${APPKIT_LIBRARY}
+    ${FOUNDATION_LIBRARY}
+  )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 # Add local cmake module path
 
@@ -115,5 +154,12 @@ set(theremax_SOURCES
 )
 
 add_executable( theremax ${theremax_SOURCES} )
-target_link_libraries( theremax ${OpenCV_LIBS} ${GLUT_LIBRARY} ${OPENGL_LIBRARY} ${AUDIO_LIBRARIES} ${LIBS} )
 
+target_link_libraries( theremax 
+  ${OpenCV_LIBS}
+  ${GLUT_LIBRARY}
+  ${OPENGL_LIBRARY}
+  ${LIBS}
+)
+
+# set( CMAKE_VERBOSE_MAKEFILE on )
