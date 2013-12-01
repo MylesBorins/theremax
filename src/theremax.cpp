@@ -24,10 +24,24 @@ int main(int argc, char **argv)
         cerr << "[theremax]: cannot initialize real-time audio I/O.." << endl;
         return -1;
     }
-    if ( !theremax_cv_init( ) )
+    // if ( !theremax_cv_init( ) )
+    // {
+    //     cerr << "[theremax]: cannot initialize your camera :( ";
+    //     return -1;
+    // }
+    
+    theremax_audio_start();
+    
+    while(1)
     {
-        cerr << "[theremax]: cannot initialize your camera :( ";
-        return -1;
+        // cerr << Globals::cvIntensity << endl;
+        String input;
+        cerr << "Want me to stop? [y | n]" << endl;
+        cin >> input;
+        break;
     }
+    
+    
+    
     return 1;
 }

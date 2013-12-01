@@ -36,6 +36,8 @@ class THEREMAXSim;
 class Globals
 {
 public:
+    // should i shit the bed?
+    static bool dead;
     // top level root simulation
     static THEREMAXSim * sim;
     
@@ -47,6 +49,9 @@ public:
     static std::string datapath;
     // version
     static std::string version;
+    
+    // cv data
+    static SAMPLE cvIntensity;
     
     // last audio buffer
     static SAMPLE * lastAudioBuffer;

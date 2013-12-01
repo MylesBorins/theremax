@@ -1,8 +1,4 @@
-//http://docs.opencv.org/modules/imgproc/doc/histograms.html?highlight=histogram#CvHistogram*%20cvCreateHist%28int%20dims,%20int*%20sizes,%20int%20type,%20float**%20ranges,%20int%20uniform%29
-#include <iostream>
-#include <highgui.h>
-#include <opencv2/imgproc/imgproc.hpp>
-#include "theremax-globals.h"
+#include "theremax-cv.h"
 
 
 using namespace std;
@@ -34,37 +30,42 @@ bool theremax_cv_init( )
 {
     VideoCapture camStream(CV_CAP_ANY);
 
-    if(!camStream.isOpened())
-    {
-        cout << "Cannot open cam" << endl;
-        return -1;
-    }
-    cout << "Camera opened successfully" << endl;
-
-    cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
-
-    while (true) {
-        Mat cameraFrame;
-        
-        camStream >> cameraFrame;
-        if (cameraFrame.dims != 0)
-        {
-            Mat frameHSV;
-            double brightness;
-            _getBrightness(cameraFrame, brightness);
-            cerr << brightness << endl;
-            imshow( CAMERA_OUTPUT_WINDOW_NAME, cameraFrame );
-        }
-            
-        if (waitKey(30) == 27) {
-            cout << "Input" << endl;
-            break;
-        }
-    }
-
-    cout << "Done" << endl;
-    camStream.release();
-    cvDestroyWindow(CAMERA_OUTPUT_WINDOW_NAME);
+    // if(!camStream.isOpened())
+    // {
+    //     cout << "Cannot open cam" << endl;
+    //     return -1;
+    // }
+    // cout << "Camera opened successfully" << endl;
+    // 
+    // cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
+    // 
+    // while (!Globals::dead) {
+    //     Mat cameraFrame;
+    //     
+    //     camStream >> cameraFrame;
+    //     if (cameraFrame.dims != 0)
+    //     {
+    //         Mat frameHSV;
+    //         double brightness;
+    //         _getBrightness(cameraFrame, brightness);
+    //         Globals::cvIntensity *= 0.5;
+    //         Globals::cvIntensity += (brightness * 0.5);
+    //         imshow( CAMERA_OUTPUT_WINDOW_NAME, cameraFrame );
+    //     }
+    //     if (waitKey(30) == 27) {
+    //         cout << "Input" << endl;
+    //         Globals::dead = true;
+    //         break;
+    //     }
+    // }
+    // 
+    // cout << "Done" << endl;
+    // camStream.release();
+    // cvDestroyWindow(CAMERA_OUTPUT_WINDOW_NAME);
     return 1;
 }
 
+bool theremax_cv_start( )
+{
+    return 1;
+};

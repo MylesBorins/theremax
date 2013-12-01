@@ -16,68 +16,11 @@
 using namespace std;
 
 
-
-// // globals
-// YFluidSynth * g_synth;
-// YEcho * g_echo;
 double g_now;
 double g_nextTime;
 int g_prog = 0;
 
-
-
-
-// basic note struct
-struct Note
-{
-    int channel;
-    float pitch;
-    float velocity;
-    float duration; // in seconds
-    // add more stuff?
-
-    // constructor
-    Note( int c, float p, float v, float d )
-    {
-        channel = c;
-        pitch = p;
-        velocity = v;
-        duration = d;
-    }
-};
-
-
-// HACK: vector of notes
-vector<Note> g_notes;
-int g_noteIndex = 0;
 XMutex g_mutex;
-
-
-
-
-// play some notes
-void theremax_playNotes( float pitch, float velocity )
-{
-    // lock
-    g_mutex.acquire();
-    // clear notes
-    g_notes.clear();
-    for( int i = 0; i < 24; i++ )
-    {
-        // next notes
-        g_notes.push_back( Note( 0, pitch + i*2, (1 - i/24.0), .05 + .15*(1 - i/24.0) ) );
-    }
-    // unlock
-    g_mutex.release();
-
-    // reset the index
-    g_noteIndex = 0;
-    
-    // play now!
-    g_nextTime = g_now;
-}
-
-
 
 
 //-----------------------------------------------------------------------------
@@ -150,13 +93,6 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
         Globals::lastAudioBufferMono[i] *= Globals::audioBufferWindow[i];
     }
 
-    // set in the wave
-    // Globals::waveform->set( Globals::lastAudioBufferMono, numFrames );
-    
-    // synthesize it
-    // g_synth->synthesize2( buffer, numFrames );
-    // echo it
-    // g_echo->synthesize2( buffer, numFrames );
 }
 
 
@@ -174,27 +110,6 @@ bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned c
         // done
         return false;
     }
-    
-    // // instantiate
-    // g_synth = new YFluidSynth();
-    // // init
-    // g_synth->init( srate, 32 );
-    // // load the soundfont
-    // g_synth->load( "data/sfonts/rocking8m11e.sf2", "" );
-    // // map program changes
-    // g_synth->programChange( 0, 0 );
-    // g_synth->programChange( 1, 79 );
-    // g_synth->programChange( 2, 4 );
-    // g_synth->programChange( 3, 10 );
-    // g_synth->programChange( 4, 13 );
-    // 
-    // // allocate echo
-    // g_echo = new YEcho( srate );
-    // g_echo->setDelay( 0, .25 );
-    // g_echo->setDelay( 1, .5 );
-
-//    // make a note
-//    g_note = makeNote( 0, 60, .9, .5, 0 );
     
     // allocate
     Globals::lastAudioBuffer = new SAMPLE[frameSize*channels];
