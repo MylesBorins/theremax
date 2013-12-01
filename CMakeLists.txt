@@ -1,8 +1,32 @@
 cmake_minimum_required(VERSION 2.8)
 project( DisplayImage )
 
-# Add local cmake module path
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
+
+message("Configuring for your os bro")
+
+# Make somewhere to store audio lib stuffs
+set(AUDIO_LIBRARIES "")
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+  message("You are on linux, so lets setup jack")
+  find_package(Jack)
+  if(JACK_FOUND)
+    add_definitions(-D__UNIX_JACK__)
+    include_directories( ${JACK_INCLUDE_DIRS} )
+    set( AUDIO_LIBRARIES ${JACK_LIBRARY} )
+  endif(JACK_FOUND)
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  # add_definitions(-D__MACOSX_CORE__)
+  # find_library(COREAUDIO_LIBRARY CoreAudio)
+    # if(COREAUDIO_LIBRARY_FOUND)
+      
+      # set( AUDIO_LIBRARIES ${COREAUDIO_LIBRARY})
+    # endif(COREAUDIO_LIBRARY_FOUND)
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+# Add local cmake module path
 
 # Require OpenCV, OpenGl, and GLUT using cmake modules
 find_package( OpenCV REQUIRED )
@@ -91,5 +115,5 @@ set(theremax_SOURCES
 )
 
 add_executable( theremax ${theremax_SOURCES} )
-target_link_libraries( theremax ${OpenCV_LIBS} ${GLUT_LIBRARY} ${OPENGL_LIBRARY} ${LIBS} )
+target_link_libraries( theremax ${OpenCV_LIBS} ${GLUT_LIBRARY} ${OPENGL_LIBRARY} ${AUDIO_LIBRARIES} ${LIBS} )
 
