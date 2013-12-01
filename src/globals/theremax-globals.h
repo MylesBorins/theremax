@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 // name: theremax-globals.h
-// desc: global stuff for bokeh visualization
+// desc: global stuff for the theremax
 //
 // author: Ge Wang (ge@ccrma.stanford.edu)
 //   date: 2013
