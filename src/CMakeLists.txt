@@ -2,7 +2,7 @@
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
  
 # Create a variable called theremax_SOURCES containing all .cpp files:
-set(theremax_SOURCES theremax.cpp )
+set(theremax_SOURCES theremax.cpp RtAudio.cpp RtAudio.h RtError.h )
  
 # For a large number of source files you can create it in a simpler way
 # using file() function:
