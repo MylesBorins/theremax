@@ -102,41 +102,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named DisplayImage
+# Target rules for targets named bin/DisplayImage
 
 # Build rule for target.
-DisplayImage: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 DisplayImage
-.PHONY : DisplayImage
+bin/DisplayImage: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 bin/DisplayImage
+.PHONY : bin/DisplayImage
 
 # fast build rule for target.
-DisplayImage/fast:
-	$(MAKE) -f CMakeFiles/DisplayImage.dir/build.make CMakeFiles/DisplayImage.dir/build
-.PHONY : DisplayImage/fast
+bin/DisplayImage/fast:
+	$(MAKE) -f CMakeFiles/bin/DisplayImage.dir/build.make CMakeFiles/bin/DisplayImage.dir/build
+.PHONY : bin/DisplayImage/fast
 
-DisplayImage.o: DisplayImage.cpp.o
-.PHONY : DisplayImage.o
+src/DisplayImage.o: src/DisplayImage.cpp.o
+.PHONY : src/DisplayImage.o
 
 # target to build an object file
-DisplayImage.cpp.o:
-	$(MAKE) -f CMakeFiles/DisplayImage.dir/build.make CMakeFiles/DisplayImage.dir/DisplayImage.cpp.o
-.PHONY : DisplayImage.cpp.o
+src/DisplayImage.cpp.o:
+	$(MAKE) -f CMakeFiles/bin/DisplayImage.dir/build.make CMakeFiles/bin/DisplayImage.dir/src/DisplayImage.cpp.o
+.PHONY : src/DisplayImage.cpp.o
 
-DisplayImage.i: DisplayImage.cpp.i
-.PHONY : DisplayImage.i
+src/DisplayImage.i: src/DisplayImage.cpp.i
+.PHONY : src/DisplayImage.i
 
 # target to preprocess a source file
-DisplayImage.cpp.i:
-	$(MAKE) -f CMakeFiles/DisplayImage.dir/build.make CMakeFiles/DisplayImage.dir/DisplayImage.cpp.i
-.PHONY : DisplayImage.cpp.i
+src/DisplayImage.cpp.i:
+	$(MAKE) -f CMakeFiles/bin/DisplayImage.dir/build.make CMakeFiles/bin/DisplayImage.dir/src/DisplayImage.cpp.i
+.PHONY : src/DisplayImage.cpp.i
 
-DisplayImage.s: DisplayImage.cpp.s
-.PHONY : DisplayImage.s
+src/DisplayImage.s: src/DisplayImage.cpp.s
+.PHONY : src/DisplayImage.s
 
 # target to generate assembly for a file
-DisplayImage.cpp.s:
-	$(MAKE) -f CMakeFiles/DisplayImage.dir/build.make CMakeFiles/DisplayImage.dir/DisplayImage.cpp.s
-.PHONY : DisplayImage.cpp.s
+src/DisplayImage.cpp.s:
+	$(MAKE) -f CMakeFiles/bin/DisplayImage.dir/build.make CMakeFiles/bin/DisplayImage.dir/src/DisplayImage.cpp.s
+.PHONY : src/DisplayImage.cpp.s
 
 # Help Target
 help:
@@ -144,12 +144,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... DisplayImage"
+	@echo "... bin/DisplayImage"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... DisplayImage.o"
-	@echo "... DisplayImage.i"
-	@echo "... DisplayImage.s"
+	@echo "... src/DisplayImage.o"
+	@echo "... src/DisplayImage.i"
+	@echo "... src/DisplayImage.s"
 .PHONY : help
 
 

@@ -56,38 +56,38 @@ CMAKE_SOURCE_DIR = /Users/thealphanerd/github/newOpencv
 CMAKE_BINARY_DIR = /Users/thealphanerd/github/newOpencv
 
 #=============================================================================
-# Target rules for target CMakeFiles/DisplayImage.dir
+# Target rules for target CMakeFiles/bin/DisplayImage.dir
 
 # All Build rule for target.
-CMakeFiles/DisplayImage.dir/all:
-	$(MAKE) -f CMakeFiles/DisplayImage.dir/build.make CMakeFiles/DisplayImage.dir/depend
-	$(MAKE) -f CMakeFiles/DisplayImage.dir/build.make CMakeFiles/DisplayImage.dir/build
+CMakeFiles/bin/DisplayImage.dir/all:
+	$(MAKE) -f CMakeFiles/bin/DisplayImage.dir/build.make CMakeFiles/bin/DisplayImage.dir/depend
+	$(MAKE) -f CMakeFiles/bin/DisplayImage.dir/build.make CMakeFiles/bin/DisplayImage.dir/build
 	$(CMAKE_COMMAND) -E cmake_progress_report /Users/thealphanerd/github/newOpencv/CMakeFiles  1
-	@echo "Built target DisplayImage"
-.PHONY : CMakeFiles/DisplayImage.dir/all
+	@echo "Built target bin/DisplayImage"
+.PHONY : CMakeFiles/bin/DisplayImage.dir/all
 
 # Include target in all.
-all: CMakeFiles/DisplayImage.dir/all
+all: CMakeFiles/bin/DisplayImage.dir/all
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/DisplayImage.dir/rule: cmake_check_build_system
+CMakeFiles/bin/DisplayImage.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thealphanerd/github/newOpencv/CMakeFiles 1
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/DisplayImage.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/bin/DisplayImage.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/thealphanerd/github/newOpencv/CMakeFiles 0
-.PHONY : CMakeFiles/DisplayImage.dir/rule
+.PHONY : CMakeFiles/bin/DisplayImage.dir/rule
 
 # Convenience name for target.
-DisplayImage: CMakeFiles/DisplayImage.dir/rule
-.PHONY : DisplayImage
+bin/DisplayImage: CMakeFiles/bin/DisplayImage.dir/rule
+.PHONY : bin/DisplayImage
 
 # clean rule for target.
-CMakeFiles/DisplayImage.dir/clean:
-	$(MAKE) -f CMakeFiles/DisplayImage.dir/build.make CMakeFiles/DisplayImage.dir/clean
-.PHONY : CMakeFiles/DisplayImage.dir/clean
+CMakeFiles/bin/DisplayImage.dir/clean:
+	$(MAKE) -f CMakeFiles/bin/DisplayImage.dir/build.make CMakeFiles/bin/DisplayImage.dir/clean
+.PHONY : CMakeFiles/bin/DisplayImage.dir/clean
 
 # clean rule for target.
-clean: CMakeFiles/DisplayImage.dir/clean
+clean: CMakeFiles/bin/DisplayImage.dir/clean
 .PHONY : clean
 
 #=============================================================================
