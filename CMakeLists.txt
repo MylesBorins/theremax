@@ -25,9 +25,9 @@ include_directories( ${CMAKE_SOURCE_DIR}/include/stk )
 link_directories( ${CMAKE_SOURCE_DIR}/include/stk )
 
 #include core
-include_directories( ${CMAKE_SOURCE_DIR}/include/core )
+include_directories( ${CMAKE_SOURCE_DIR}/core )
 #link core
-link_directories( ${CMAKE_SOURCE_DIR}/include/core )
+link_directories( ${CMAKE_SOURCE_DIR}/core )
 
 #include x-api
 include_directories( ${CMAKE_SOURCE_DIR}/include/x-api )
@@ -77,11 +77,11 @@ set(xyapi_SOURCES
 )
 
 set(core_SOURCES 
-  ${CMAKE_SOURCE_DIR}/include/core/theremax-globals.h
-  ${CMAKE_SOURCE_DIR}/include/core/theremax-globals.cpp
+  ${CMAKE_SOURCE_DIR}/core/theremax-globals.h
+  ${CMAKE_SOURCE_DIR}/core/theremax-globals.cpp
   
-  ${CMAKE_SOURCE_DIR}/include/core/theremax-audio.cpp
-  ${CMAKE_SOURCE_DIR}/include/core/theremax-audio.h
+  ${CMAKE_SOURCE_DIR}/core/theremax-audio.cpp
+  ${CMAKE_SOURCE_DIR}/core/theremax-audio.h
   ${xyapi_SOURCES}
 )
 
