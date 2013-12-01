@@ -77,10 +77,25 @@ find_package( liblo REQUIRED )
 include_directories(${liblo_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${liblo_LIBRARIES})
 
-#include core
-include_directories( ${CMAKE_SOURCE_DIR}/core )
-#link core
-link_directories( ${CMAKE_SOURCE_DIR}/core )
+#include audio
+include_directories( ${CMAKE_SOURCE_DIR}/src/audio )
+#link audio
+link_directories( ${CMAKE_SOURCE_DIR}/src/audio )
+
+#include cv
+include_directories( ${CMAKE_SOURCE_DIR}/src/cv )
+#link cv
+link_directories( ${CMAKE_SOURCE_DIR}/src/cv )
+
+#include globals
+include_directories( ${CMAKE_SOURCE_DIR}/src/globals )
+#link globals
+link_directories( ${CMAKE_SOURCE_DIR}/src/globals )
+
+#include graphics
+include_directories( ${CMAKE_SOURCE_DIR}/src/graphics )
+#link graphics
+link_directories( ${CMAKE_SOURCE_DIR}/src/graphics )
 
 # include rtaudio
 include_directories( ${CMAKE_SOURCE_DIR}/include/rtaudio )
@@ -140,11 +155,21 @@ set(xyapi_SOURCES
 )
 
 set(core_SOURCES 
-  ${CMAKE_SOURCE_DIR}/core/theremax-globals.h
-  ${CMAKE_SOURCE_DIR}/core/theremax-globals.cpp
+  ${CMAKE_SOURCE_DIR}/src/globals/theremax-globals.h
+  ${CMAKE_SOURCE_DIR}/src/globals/theremax-globals.cpp
   
-  ${CMAKE_SOURCE_DIR}/core/theremax-audio.cpp
-  ${CMAKE_SOURCE_DIR}/core/theremax-audio.h
+  ${CMAKE_SOURCE_DIR}/src/audio/theremax-audio.cpp
+  ${CMAKE_SOURCE_DIR}/src/audio/theremax-audio.h
+  
+  ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv.cpp
+  ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv.h
+  
+  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-entity.cpp
+  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-entity.h
+  
+  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-sim.cpp
+  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-sim.h
+  
   ${xyapi_SOURCES}
 )
 
