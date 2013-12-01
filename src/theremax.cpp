@@ -2,6 +2,8 @@
 #include <iostream>
 #include <highgui.h>
 #include <opencv2/imgproc/imgproc.hpp>
+#include "theremax-audio.h"
+
 
 using namespace std;
 using namespace cv;
