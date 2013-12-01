@@ -3,6 +3,9 @@
 ---
 ###How to do?
 cmake .
+
 make
+
 ./bin/theremax
+
 !!! Profit !!!
