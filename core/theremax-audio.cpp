@@ -11,7 +11,6 @@
 #include "x-thread.h"
 #include "y-fft.h"
 #include "y-waveform.h"
-#include "y-fluidsynth.h"
 #include "y-echo.h"
 #include <iostream>
 using namespace std;
