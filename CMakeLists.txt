@@ -14,6 +14,11 @@ find_package( liblo REQUIRED )
 include_directories(${liblo_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${liblo_LIBRARIES})
 
+#include core
+include_directories( ${CMAKE_SOURCE_DIR}/core )
+#link core
+link_directories( ${CMAKE_SOURCE_DIR}/core )
+
 # include rtaudio
 include_directories( ${CMAKE_SOURCE_DIR}/include/rtaudio )
 # link rtaudio
@@ -23,11 +28,6 @@ link_directories( ${CMAKE_SOURCE_DIR}/include/rtaudio )
 include_directories( ${CMAKE_SOURCE_DIR}/include/stk )
 # link stk
 link_directories( ${CMAKE_SOURCE_DIR}/include/stk )
-
-#include core
-include_directories( ${CMAKE_SOURCE_DIR}/core )
-#link core
-link_directories( ${CMAKE_SOURCE_DIR}/core )
 
 #include x-api
 include_directories( ${CMAKE_SOURCE_DIR}/include/x-api )
