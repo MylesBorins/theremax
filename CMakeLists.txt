@@ -15,6 +15,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/bin/" )
 add_subdirectory(src)
 # add_executable( DisplayImage src/DisplayImage.cpp )
 # 
-# target_link_libraries( DisplayImage ${OpenCV_LIBS} ${OpenGL_LIBS} ${LIBS} )
+
 # 
 # set(CMAKE_BUILD_TYPE Debug)
