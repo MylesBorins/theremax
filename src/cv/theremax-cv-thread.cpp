@@ -1,6 +1,16 @@
 #include "theremax-cv-thread.h"
 
 TheremaxCV theremaxCV;
+XThread thread;
+
+void *threadfunc(void *parm)
+{
+    while(true)
+    {
+        theremaxCV.process();
+    }
+    return NULL;
+}
 
 bool theremax_cv_thread_init( )
 {
@@ -10,10 +20,7 @@ bool theremax_cv_thread_init( )
 
 bool theremax_cv_thread_start( )
 {
-    while(true)
-    {
-        theremaxCV.process();
-        cerr << Globals::cvIntensity << endl;
-    }
+    theremaxCV.process();
+    thread.start(threadfunc);
     return 1;
 };

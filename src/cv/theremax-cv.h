@@ -15,6 +15,11 @@
 #include "theremax-globals.h"
 #include "x-thread.h"
 
+using namespace std;
+using namespace cv;
+
+#define CAMERA_OUTPUT_WINDOW_NAME "camera-output"
+
 class TheremaxCV
 {
 public:

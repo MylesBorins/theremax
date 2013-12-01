@@ -1,11 +1,5 @@
 #include "theremax-cv.h"
 
-
-using namespace std;
-using namespace cv;
-
-#define CAMERA_OUTPUT_WINDOW_NAME "camera-output"
-
 void _getBrightness(const Mat& frame, double& brightness)
 {
     Mat temp, color[3], lum;
@@ -36,16 +30,17 @@ bool TheremaxCV::init()
     
 {
     camStream = new cv::VideoCapture(CV_CAP_ANY);
+    if(!camStream->isOpened())
+    {
+        cout << "Cannot open cam" << endl;
+        return -1;
+    }
     cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
     return true;
     
     // cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
 //     camStream = new cv::VideoCapture(CV_CAP_ANY);
-//     if(!camStream->isOpened())
-//     {
-//         cout << "Cannot open cam" << endl;
-//         return -1;
-//     }
+    
 //     cout << "Camera opened successfully" << endl;
 //     while(true)
 //     {
