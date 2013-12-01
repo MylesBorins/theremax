@@ -1,9 +1,28 @@
 #Theremax
 
-By Myles Borins
+Primarily written by Myles Borins
+During the Fall of 2013
+A Special thanks to Ge Wong, and William Light
 
----
-###How to do?
+##About
+
+Do it everyday!
+
+###Dependencies
+
+You will need to have a basic compilation tool chain installed.
+
+The project relies on a couple of libraries you can find with most package managers
+
+*liblo
+*OpenGL
+*GLUT
+*CMake
+
+On Linux it is assuming you have jack
+
+###Compilation
+
 cmake .
 
 make
@@ -11,3 +30,7 @@ make
 ./bin/theremax
 
 !!! Profit !!!
+
+##License
+
+GPL ~ License included

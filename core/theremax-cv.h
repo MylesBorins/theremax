@@ -1,8 +1,8 @@
 //-----------------------------------------------------------------------------
-// name: theremax-audio.h
-// desc: audio stuff
+// name: theremax-cv.h
+// desc: cv stuff
 //
-// author: Ge Wang (ge@ccrma.stanford.edu)
+// author: Myles Borins
 //   date: 2013
 //-----------------------------------------------------------------------------
 #ifndef __THEREMAX_AUDIO_H__
@@ -11,9 +11,9 @@
 
 
 
-// init audio
-bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned channels );
-// start audio
-bool theremax_audio_start();
+// init cv
+bool theremax_cv_init( unsigned int srate, unsigned int frameSize, unsigned channels );
+// start cv
+bool theremax_cv_start();
 
 #endif
