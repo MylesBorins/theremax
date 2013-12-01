@@ -68,8 +68,3 @@ bool theremax_cv_init( )
     return 1;
 }
 
-// int main(int argc, char **argv)
-// {
-//     
-
-// }
