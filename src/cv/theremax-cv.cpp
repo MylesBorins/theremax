@@ -37,17 +37,6 @@ bool TheremaxCV::init()
     }
     cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
     return true;
-    
-    // cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
-//     camStream = new cv::VideoCapture(CV_CAP_ANY);
-    
-//     cout << "Camera opened successfully" << endl;
-//     while(true)
-//     {
-//         getIntensity();
-//         cerr << Globals::cvIntensity << endl;
-//     }
-//     return true;
 };
 
 void TheremaxCV::process()
@@ -76,30 +65,3 @@ void TheremaxCV::getIntensity()
     Globals::cvIntensity *= 0.5;
     Globals::cvIntensity += (brightness * 0.5);
 }
-        // 
-    // 
-    // cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
-    // 
-    // while (!Globals::dead) {
-    //     Mat cameraFrame;
-    //     
-    //     camStream >> cameraFrame;
-    //     if (cameraFrame.dims != 0)
-    //     {
-    //         Mat frameHSV;
-    //         double brightness;
-    //         _getBrightness(cameraFrame, brightness);
-    //         Globals::cvIntensity *= 0.5;
-    //         Globals::cvIntensity += (brightness * 0.5);
-    //         imshow( CAMERA_OUTPUT_WINDOW_NAME, cameraFrame );
-    //     }
-    //     if (waitKey(30) == 27) {
-    //         cout << "Input" << endl;
-    //         Globals::dead = true;
-    //         break;
-    //     }
-    // }
-    // 
-    // cout << "Done" << endl;
-    // camStream.release();
-    // cvDestroyWindow(CAMERA_OUTPUT_WINDOW_NAME);
