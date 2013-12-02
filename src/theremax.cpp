@@ -1,31 +1,26 @@
+//-----------------------------------------------------------------------------
+// name: theremax.cpp
+// desc: theremin to the max
+//
+// author: Myles Borins
+//   date: fall 2013
+//
+//-----------------------------------------------------------------------------
 #include <iostream>
-#include <highgui.h>
-#include <opencv2/imgproc/imgproc.hpp>
 #include "theremax-audio.h"
-#include "theremax-globals.h"
 #include "theremax-cv-thread.h"
-#include "x-thread.h"
 #include "theremax-gfx.h"
 
-
 using namespace std;
-using namespace cv;
-
-#define CAMERA_OUTPUT_WINDOW_NAME "camera-output"
-
-
 
 int main(int argc, const char **argv)
 {
-    theremax_gfx_init(argc, argv);
-    // start real-time audio
-    if ( !theremax_audio_init( THEREMAX_SRATE, THEREMAX_FRAMESIZE, THEREMAX_NUMCHANNELS ) )
+    // Initialize graphics engine / simulation
+    if ( !theremax_gfx_init(argc, argv) )
     {
-        // error message
-        cerr << "[theremax]: cannot initialize real-time audio I/O.." << endl;
+        cerr << "[theremax]: cannot initialize graphics.... derp" << endl;
         return -1;
     }
-    
     // Open webcam and initialize opencv stuffs
     if (!theremax_cv_thread_init())
     {
@@ -33,10 +28,18 @@ int main(int argc, const char **argv)
         cerr << "[theremax]: cannot initialize webcam for computer vision magicks.." << endl;
         return -1;
     }
+
+    // initialize real-time audio
+    if ( !theremax_audio_init( THEREMAX_SRATE, THEREMAX_FRAMESIZE, THEREMAX_NUMCHANNELS ) )
+    {
+        // error message
+        cerr << "[theremax]: cannot initialize real-time audio I/O.." << endl;
+        return -1;
+    }
     
+    // Lets get this shop on the road!!!
     theremax_cv_thread_start();
-    // theremax_audio_start();
-    
+    theremax_audio_start();
     theremax_gfx_loop();
     return 1;
 }

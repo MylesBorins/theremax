@@ -3,6 +3,7 @@
 // desc: graphics stuff for bokeh visualization
 //
 // author: Ge Wang (ge@ccrma.stanford.edu)
+// hacked on by; Myles Borins
 //   date: 2013
 //-----------------------------------------------------------------------------
 #ifndef __THEREMAX_GFX_H__

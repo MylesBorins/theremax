@@ -3,6 +3,7 @@
 // desc: graphics stuff for bokeh visualization
 //
 // author: Ge Wang (ge@ccrma.stanford.edu)
+// hacked on by; Myles Borins
 //   date: 2013
 //-----------------------------------------------------------------------------
 #include "theremax-gfx.h"
@@ -359,11 +360,10 @@ void theremax_about()
 void theremax_keys()
 {
     theremax_line();
-    fprintf( stderr, "[bokeh]: run-time control\n" );
+    fprintf( stderr, "[theremex]: run-time control\n" );
     theremax_line();
     fprintf( stderr, "  'h' - print this help message\n" );
     fprintf( stderr, "  's' - toggle fullscreen\n" );
-    fprintf( stderr, "  'b' - toggle animated trails\n" );
     fprintf( stderr, "  'f' - toggle fog rendering\n" );
     fprintf( stderr, "  '[' and ']' - rotate automaton\n" );
     fprintf( stderr, "  '-' and '+' - zoom away/closer to center of automaton\n" );
@@ -400,9 +400,9 @@ void theremax_help()
 void theremax_usage()
 {
     theremax_line();
-    fprintf( stderr, "[bokeh]: command line arguments\n" );
+    fprintf( stderr, "[theremax]: command line arguments\n" );
     theremax_line();
-    fprintf( stderr, "usage: bokeh --[options] [name]\n" );
+    fprintf( stderr, "usage: theremax --[options] [name]\n" );
     fprintf( stderr, "   [options] = help | fullscreen" );
 }
 
@@ -522,9 +522,9 @@ void keyboardFunc( unsigned char key, int x, int y )
         }
         case 'a':
         {
-            // theremax_endline();
-            // theremax_about();
-            // theremax_endline();
+            theremax_endline();
+            theremax_about();
+            theremax_endline();
             break;
         }
         case 'b':
@@ -541,13 +541,13 @@ void keyboardFunc( unsigned char key, int x, int y )
                 blendAlpha = Globals::blendAlpha.goal;
                 Globals::blendAlpha.goal = 1;
             }
-            fprintf( stderr, "[bokeh]: blendscreen:%s\n", Globals::blendScreen ? "ON" : "OFF" );
+            fprintf( stderr, "[theremax]: blendscreen:%s\n", Globals::blendScreen ? "ON" : "OFF" );
             break;
         }
         case 'f':
         {
             Globals::fog = !Globals::fog;
-            fprintf( stderr, "[bokeh]: fog:%s\n", Globals::fog ? "ON" : "OFF" );
+            fprintf( stderr, "[theremax]: fog:%s\n", Globals::fog ? "ON" : "OFF" );
             if( Globals::fog )
             {
                 // fog mode
@@ -600,17 +600,17 @@ void keyboardFunc( unsigned char key, int x, int y )
                 glutReshapeWindow( Globals::lastWindowWidth, Globals::lastWindowHeight );
             
             Globals::fullscreen = !Globals::fullscreen;
-            fprintf( stderr, "[bokeh]: fullscreen:%s\n", Globals::fullscreen ? "ON" : "OFF" );
+            fprintf( stderr, "[theremax]: fullscreen:%s\n", Globals::fullscreen ? "ON" : "OFF" );
             break;
         }
         case '<':
             Globals::fog_density *= .95f;
-            fprintf( stderr, "[bokeh]: fog density:%f\n", Globals::fog_density );
+            fprintf( stderr, "[theremax]: fog density:%f\n", Globals::fog_density );
             glFogf(GL_FOG_DENSITY, Globals::fog_density);
             break;
         case '>':
             Globals::fog_density *= 1.05f;
-            fprintf( stderr, "[bokeh]: fog density:%f\n", Globals::fog_density );
+            fprintf( stderr, "[theremax]: fog density:%f\n", Globals::fog_density );
             glFogf(GL_FOG_DENSITY, Globals::fog_density);
             break;
             
