@@ -44,7 +44,7 @@
 class YEntity;
 
 // A block that does something with an entity and returns true if it succeeds
-typedef void (^EntityBlock)( YEntity * );
+typedef void (EntityBlock)( YEntity * );
 
 // the data type to use for elapsed time
 typedef double YTimeInterval;
