@@ -14,8 +14,8 @@ void *threadfunc(void *parm)
 
 bool theremax_cv_thread_init( )
 {
-    theremaxCV.init();
-    return 1;
+    cerr << "[theremax]: intializaing computer vision systems..." << endl;
+    return theremaxCV.init();
 }
 
 bool theremax_cv_thread_start( )

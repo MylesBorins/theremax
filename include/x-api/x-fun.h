@@ -44,7 +44,6 @@
 
 
 
-
 //-----------------------------------------------------------------------------
 // name: class XFun
 // desc: static-only class to access common functions

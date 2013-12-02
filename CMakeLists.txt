@@ -155,30 +155,33 @@ set(xyapi_SOURCES
   ${CMAKE_SOURCE_DIR}/include/x-api/x-gfx.h
   ${CMAKE_SOURCE_DIR}/include/x-api/x-thread.cpp
   ${CMAKE_SOURCE_DIR}/include/x-api/x-thread.h
+  ${CMAKE_SOURCE_DIR}/include/x-api/x-fun.cpp
+  ${CMAKE_SOURCE_DIR}/include/x-api/x-fun.h
   ${rtaudio_SOURCES}
   ${stk_SOURCES}
 )
 
 set(core_SOURCES 
+  # Globals
   ${CMAKE_SOURCE_DIR}/src/globals/theremax-globals.h
   ${CMAKE_SOURCE_DIR}/src/globals/theremax-globals.cpp
-  
+  # Audio Engine
   ${CMAKE_SOURCE_DIR}/src/audio/theremax-audio.cpp
   ${CMAKE_SOURCE_DIR}/src/audio/theremax-audio.h
   ${CMAKE_SOURCE_DIR}/src/audio/Reverb.h
   ${CMAKE_SOURCE_DIR}/src/audio/Reverb.cpp
-  
+  # Computer Vision shiz
   ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv.cpp
   ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv.h
-  
   ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv-thread.cpp
   ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv-thread.h
-  
+  # Gfx
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-entity.cpp
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-entity.h
-  
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-sim.cpp
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-sim.h
+  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-gfx.cpp
+  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-gfx.h
   
   ${xyapi_SOURCES}
 )
