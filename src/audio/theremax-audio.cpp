@@ -12,6 +12,7 @@
 #include "y-fft.h"
 #include "y-waveform.h"
 #include "y-echo.h"
+#include "Reverb.h"
 #include <iostream>
 using namespace std;
 
@@ -28,12 +29,23 @@ XMutex g_mutex;
 //-----------------------------------------------------------------------------
 static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * userData )
 {
+    
     // keep track of current time in samples
     g_now += numFrames;
     
     // HACK: rough time keeping for next notes - this logic really should be
     // somewhere else: e.g., in its own class and not directly in the audio callback!
     // lock (to protect vector)
+    Globals::reverb->compute(numFrames, Globals::finputs, Globals::foutputs);
+    
+    for (int j = 0; j < THEREMAX_FRAMESIZE; j++)
+    {
+        for (int i = 0; i < THEREMAX_NUMCHANNELS; i++)
+        {
+            buffer[(j * THEREMAX_NUMCHANNELS) + i] = Globals::foutputs[i][j];;
+        }
+    }
+    
     g_mutex.acquire();
     // cerr << Globals::freq << endl;
     // release lock
@@ -108,21 +120,51 @@ bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned c
     // compute the window
     hanning( Globals::audioBufferWindow, frameSize );
     
-    // // create waveform
-    // Globals::waveform = new YWaveform();
-    // // place it
-    // Globals::waveform->loc.y = 1.5f;
-    // // set the width
-    // Globals::waveform->setWidth( 2.5f );
-    // // set the height
-    // Globals::waveform->setHeight( .75f );
-    // // initialize it
-    // Globals::waveform->init( frameSize );
-    // // active?
-    // Globals::waveform->active = true;
+    // create Reverb
+    Globals::reverb = new Reverb();
+    Globals::reverb->init(THEREMAX_SRATE);
     
-    // add to sim
-    // Globals::sim->root().addChild( Globals::waveform );
+    // Setup reverb
+    // Band 0 upper edge
+    Globals::reverb->fhslider6 = 1582;
+    // Band 1 upper edge
+    Globals::reverb->fhslider5 = 100;
+    // Band 2 upper edge
+    Globals::reverb->fhslider4 = 3844;
+    // Band 3 upper edge
+    Globals::reverb->fhslider3 = 3442;
+
+    // Band 0 t60
+    Globals::reverb->fvslider3 = 8.2f;
+    // Band 1 t60
+    Globals::reverb->fvslider4 = 10.0f;
+    // Band 2 t60
+    Globals::reverb->fvslider2 = 4.6f;
+    // Band 3 t60
+    Globals::reverb->fvslider1 = 10.0f;
+    // Band 4 t60
+    Globals::reverb->fvslider0 = 7.0f;
+
+
+    // Room Dimensions / min acoustic ray length
+    Globals::reverb->fhslider1 = 0.1;
+    // Room Dimensions / max acoustic ray length
+    Globals::reverb->fhslider0 = 0.1;
+    
+    // Mute external input
+    Globals::reverb->fcheckbox1 = true;
+    // Add pink noise
+    Globals::reverb->fcheckbox0 = true;
+    
+    for (int i = 0; i < THEREMAX_NUMCHANNELS; i++)
+    {
+        Globals::finputs[i] = new FAUSTFLOAT[THEREMAX_FRAMESIZE];
+        memset( Globals::finputs[i], 0,
+               sizeof(FAUSTFLOAT)*THEREMAX_FRAMESIZE );
+        Globals::foutputs[i] = new FAUSTFLOAT[THEREMAX_FRAMESIZE];
+        memset( Globals::foutputs[i], 0,
+               sizeof(FAUSTFLOAT)*THEREMAX_FRAMESIZE );
+    }
     
     return true;
 }

@@ -160,6 +160,8 @@ set(core_SOURCES
   
   ${CMAKE_SOURCE_DIR}/src/audio/theremax-audio.cpp
   ${CMAKE_SOURCE_DIR}/src/audio/theremax-audio.h
+  ${CMAKE_SOURCE_DIR}/src/audio/Reverb.h
+  ${CMAKE_SOURCE_DIR}/src/audio/Reverb.cpp
   
   ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv.cpp
   ${CMAKE_SOURCE_DIR}/src/cv/theremax-cv.h

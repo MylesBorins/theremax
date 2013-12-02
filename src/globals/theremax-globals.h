@@ -13,6 +13,7 @@
 #include "x-audio.h"
 #include "x-gfx.h"
 #include "x-vector3d.h"
+#include "Reverb.h"
 
 // c++
 #include <string>
@@ -53,8 +54,14 @@ public:
     // cv data
     static SAMPLE cvIntensity;
     
+    static FAUSTFLOAT ** finputs;
+    static FAUSTFLOAT ** foutputs;
+    
     // global freq
     static SAMPLE freq;
+    
+    // global reverb
+    static Reverb * reverb;
     
     // last audio buffer
     static SAMPLE * lastAudioBuffer;

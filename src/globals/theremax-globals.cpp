@@ -34,6 +34,11 @@ unsigned int Globals::lastAudioBufferChannels = 0;
 SAMPLE Globals::cvIntensity = 0;
 SAMPLE Globals::freq = 220;
 
+Reverb * Globals::reverb = NULL;
+
+FAUSTFLOAT ** Globals::finputs = new FAUSTFLOAT*[THEREMAX_NUMCHANNELS];
+FAUSTFLOAT ** Globals::foutputs = new FAUSTFLOAT*[THEREMAX_NUMCHANNELS];
+
 GLboolean Globals::fullscreen = DEFAULT_FULLSCREEN;
 GLboolean Globals::blendScreen = DEFAULT_BLENDSCREEN;
 

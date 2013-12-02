@@ -51,6 +51,7 @@ void TheremaxCV::process()
         _getBrightness(cameraFrame, brightness);
         Globals::cvIntensity *= 0.5;
         Globals::cvIntensity += (brightness * 0.5);
+        
         Globals::freq = Globals::freq * 0.8;
         Globals::freq += pow((Globals::cvIntensity * 110 * 0.2), 2);
     }
