@@ -50,9 +50,14 @@ void TheremaxCV::process()
         double brightness;
         _getBrightness(cameraFrame, brightness);
         Globals::cvIntensity *= 0.5;
-        Globals::cvIntensity += pow(brightness, 2) * 0.5;
+        Globals::cvIntensity += pow(brightness, 3) * 0.5;
         
-        double exponent = (Globals::cvIntensity * -10) + 1;
+        double exponent = (Globals::cvIntensity * -1) + 1;
+        exponent = (exponent * -10) + 1;
+        if (exponent > 1)
+        {
+            exponent = 1;
+        }
         // Room Dimensions / min acoustic ray length
         cerr << exponent << endl;
         Globals::reverb->fhslider1 = pow(10, exponent);
