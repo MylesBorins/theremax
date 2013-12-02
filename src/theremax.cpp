@@ -4,6 +4,7 @@
 #include "theremax-audio.h"
 #include "theremax-globals.h"
 #include "theremax-cv-thread.h"
+#include "x-thread.h"
 
 
 using namespace std;
