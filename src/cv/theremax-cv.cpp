@@ -1,3 +1,10 @@
+//-----------------------------------------------------------------------------
+// name: theremax-cv.cpp
+// desc: cv stuff
+//
+// author: Myles Borins
+//   date: 2013
+//-----------------------------------------------------------------------------
 #include "theremax-cv.h"
 
 void _getBrightness(const Mat& frame, double& brightness)

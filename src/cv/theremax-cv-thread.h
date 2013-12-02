@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// name: theremax-cv.h
+// name: theremax-cv-thread.h
 // desc: cv stuff
 //
 // author: Myles Borins

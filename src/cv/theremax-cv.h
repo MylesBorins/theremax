@@ -14,6 +14,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include "theremax-globals.h"
 #include "x-thread.h"
+#include "x-fun.h"
 
 using namespace std;
 using namespace cv;

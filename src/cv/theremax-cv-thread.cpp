@@ -1,3 +1,11 @@
+//-----------------------------------------------------------------------------
+// name: theremax-cv-thread.cpp
+// desc: cv stuff
+//
+// author: Myles Borins
+//   date: 2013
+//-----------------------------------------------------------------------------
+
 #include "theremax-cv-thread.h"
 
 TheremaxCV theremaxCV;
