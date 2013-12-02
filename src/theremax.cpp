@@ -37,13 +37,6 @@ int main(int argc, const char **argv)
     theremax_cv_thread_start();
     // theremax_audio_start();
     
-    while(1)
-    {
-        // cerr << Globals::cvIntensity << endl;
-        String input;
-        cerr << "Want me to stop? [y | n]" << endl;
-        cin >> input;
-        break;
-    }
+    theremax_gfx_loop();
     return 1;
 }
