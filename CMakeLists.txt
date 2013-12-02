@@ -134,6 +134,8 @@ set(stk_SOURCES
   ${CMAKE_SOURCE_DIR}/include/stk/Filter.h
   ${CMAKE_SOURCE_DIR}/include/stk/Delay.cpp
   ${CMAKE_SOURCE_DIR}/include/stk/Delay.h
+  ${CMAKE_SOURCE_DIR}/include/stk/BiQuad.cpp
+  ${CMAKE_SOURCE_DIR}/include/stk/BiQuad.h
 )
 
 set(xyapi_SOURCES

@@ -42,7 +42,7 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     {
         for (int i = 0; i < THEREMAX_NUMCHANNELS; i++)
         {
-            buffer[(j * THEREMAX_NUMCHANNELS) + i] = Globals::foutputs[i][j];;
+            buffer[(j * THEREMAX_NUMCHANNELS) + i] = Globals::biquad->tick(Globals::foutputs[i][j]);
         }
     }
     
@@ -126,30 +126,30 @@ bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned c
     
     // Setup reverb
     // Band 0 upper edge
-    Globals::reverb->fhslider6 = 1582;
+    Globals::reverb->fhslider6 = 1500;
     // Band 1 upper edge
-    Globals::reverb->fhslider5 = 100;
+    Globals::reverb->fhslider5 = 1000;
     // Band 2 upper edge
-    Globals::reverb->fhslider4 = 3844;
+    Globals::reverb->fhslider4 = 135;
     // Band 3 upper edge
-    Globals::reverb->fhslider3 = 3442;
+    Globals::reverb->fhslider3 = 344;
 
     // Band 0 t60
-    Globals::reverb->fvslider3 = 8.2f;
+    Globals::reverb->fvslider3 = 3.0f;
     // Band 1 t60
     Globals::reverb->fvslider4 = 10.0f;
     // Band 2 t60
-    Globals::reverb->fvslider2 = 4.6f;
+    Globals::reverb->fvslider2 = 3.0f;
     // Band 3 t60
     Globals::reverb->fvslider1 = 10.0f;
     // Band 4 t60
-    Globals::reverb->fvslider0 = 7.0f;
+    Globals::reverb->fvslider0 = 3.0f;
 
 
     // Room Dimensions / min acoustic ray length
-    Globals::reverb->fhslider1 = 0.1;
+    Globals::reverb->fhslider1 = 10.0f;
     // Room Dimensions / max acoustic ray length
-    Globals::reverb->fhslider0 = 0.1;
+    Globals::reverb->fhslider0 = 10.0f;
     
     // Mute external input
     Globals::reverb->fcheckbox1 = true;
@@ -166,6 +166,15 @@ bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned c
                sizeof(FAUSTFLOAT)*THEREMAX_FRAMESIZE );
     }
     
+    // Setup Biquad
+    Globals::biquad = new stk::BiQuad;
+    Globals::biquad->setCoefficients(
+        0.0009405043311967682,
+        0.0018810086623935365,
+        0.0009405043311967682,
+        -1.9113981953542545,
+        0.9151602126790416
+    );
     return true;
 }
 

@@ -39,6 +39,8 @@ Reverb * Globals::reverb = NULL;
 FAUSTFLOAT ** Globals::finputs = new FAUSTFLOAT*[THEREMAX_NUMCHANNELS];
 FAUSTFLOAT ** Globals::foutputs = new FAUSTFLOAT*[THEREMAX_NUMCHANNELS];
 
+stk::BiQuad * Globals::biquad = NULL;
+
 GLboolean Globals::fullscreen = DEFAULT_FULLSCREEN;
 GLboolean Globals::blendScreen = DEFAULT_BLENDSCREEN;
 

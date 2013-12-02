@@ -14,6 +14,7 @@
 #include "x-gfx.h"
 #include "x-vector3d.h"
 #include "Reverb.h"
+#include "BiQuad.h"
 
 // c++
 #include <string>
@@ -56,6 +57,8 @@ public:
     
     static FAUSTFLOAT ** finputs;
     static FAUSTFLOAT ** foutputs;
+    
+    static stk::BiQuad * biquad;
     
     // global freq
     static SAMPLE freq;
