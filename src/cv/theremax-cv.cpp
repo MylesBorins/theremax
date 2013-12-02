@@ -52,17 +52,22 @@ void TheremaxCV::process()
         Globals::cvIntensity *= 0.5;
         Globals::cvIntensity += pow(brightness, 3) * 0.5;
         
+        // Update the reverb ... first the room dimentions
         double exponent = (Globals::cvIntensity * -1) + 1;
-        exponent = (exponent * -6) + 1;
+        exponent = (exponent * -8) + 1;
         if (exponent > 1)
         {
             exponent = 1;
         }
         // Room Dimensions / min acoustic ray length
-        cerr << exponent << endl;
         Globals::reverb->fhslider1 = pow(10, exponent);
         // Room Dimensions / max acoustic ray length
         Globals::reverb->fhslider0 = pow(10, exponent);
+        
+        double tuning = 1500 + 700 * Globals::cvIntensity;
+        // Now some of the upper edges
+        Globals::reverb->fhslider6 = tuning;
+        Globals::reverb->fhslider5 = tuning - 200;
         
         Globals::freq = Globals::freq * 0.8;
         Globals::freq += pow((Globals::cvIntensity * 110 * 0.2), 2);

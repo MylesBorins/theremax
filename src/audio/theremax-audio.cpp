@@ -128,7 +128,7 @@ bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned c
     // Band 0 upper edge
     Globals::reverb->fhslider6 = 1500;
     // Band 1 upper edge
-    Globals::reverb->fhslider5 = 1000;
+    Globals::reverb->fhslider5 = 1500;
     // Band 2 upper edge
     Globals::reverb->fhslider4 = 135;
     // Band 3 upper edge
