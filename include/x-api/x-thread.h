@@ -43,7 +43,7 @@
 
 
 
-#if ( defined(__PLATFORM_MACOSX__) || defined(__PLATFORM_LINUX__) || defined(__WINDOWS_PTHREAD__) )
+#if ( defined(__PLATFORM_MACOSX__) || __PLATFORM_LINUX__ || defined(__WINDOWS_PTHREAD__) )
   #include <pthread.h>
   #define THREAD_TYPE
   typedef pthread_t THREAD_HANDLE;
