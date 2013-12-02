@@ -50,9 +50,9 @@ void TheremaxCV::process()
         double brightness;
         _getBrightness(cameraFrame, brightness);
         Globals::cvIntensity *= 0.5;
-        Globals::cvIntensity += pow(brightness, 3.1) * 0.5;
+        Globals::cvIntensity += pow(brightness, 3) * 0.5;
         
-        if (Globals::cvIntensity > 0.55)
+        if (Globals::cvIntensity > 0.50)
         {
             Globals::reverb->fcheckbox0 = false;
         }
