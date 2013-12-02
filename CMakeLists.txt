@@ -9,6 +9,7 @@ message("Configuring for your os bro")
 set(AUDIO_LIBRARIES "")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+  find_package (Threads)
   message("You are on linux, so lets setup jack")
   find_package(Jack)
   if(JACK_FOUND)
@@ -17,6 +18,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set( LIBS 
       ${LIBS}
       ${JACK_LIBRARY}
+      ${CMAKE_THREAD_LIBS_INIT}
     )
   endif(JACK_FOUND)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
