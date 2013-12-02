@@ -7,6 +7,9 @@
 //-----------------------------------------------------------------------------
 #include "theremax-cv.h"
 
+double intensityMin = 1;
+double intensityMax = 0;
+
 void _getBrightness(const Mat& frame, double& brightness)
 {
     Mat temp, color[3], lum;
@@ -56,6 +59,16 @@ void TheremaxCV::process()
         Mat frameHSV;
         double brightness;
         _getBrightness(cameraFrame, brightness);
+        if (brightness > intensityMax)
+        {
+            intensityMax = brightness;
+        }
+        if (brightness < intensityMin)
+        {
+            intensityMin = brightness;
+        }
+        cerr << "pre: " << brightness;
+        cerr << " post: " << brightness << endl;
         Globals::cvIntensity *= 0.5;
         Globals::cvIntensity += pow(brightness, 3) * 0.5;
         
