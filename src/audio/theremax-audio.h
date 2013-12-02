@@ -2,13 +2,20 @@
 // name: theremax-audio.h
 // desc: audio stuff
 //
-// author: Ge Wang (ge@ccrma.stanford.edu)
-//   date: 2013
+// author: Myles Borins (mborins@ccrma.stanford.edu)
+//   date: Fall 2013
 //-----------------------------------------------------------------------------
+
 #ifndef __THEREMAX_AUDIO_H__
 #define __THEREMAX_AUDIO_H__
 
-
+#include "theremax-audio.h"
+#include "theremax-globals.h"
+#include "x-thread.h"
+#include "y-fft.h"
+#include "Reverb.h"
+#include <iostream>
+using namespace std;
 
 
 // init audio

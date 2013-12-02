@@ -1,17 +1,14 @@
 //-----------------------------------------------------------------------------
 // name: theremax-audio.cpp
-// desc: audio stuff for bokeh
+// desc: audio stuff theremax
 //
-// author: Ge Wang (ge@ccrma.stanford.edu)
-//   date: 2013
+// author: Myles Borins (mborins@ccrma.stanford.edu)
+//   date: Fall 2013
 //-----------------------------------------------------------------------------
 #include "theremax-audio.h"
 #include "theremax-globals.h"
-#include "theremax-sim.h"
 #include "x-thread.h"
 #include "y-fft.h"
-#include "y-waveform.h"
-#include "y-echo.h"
 #include "Reverb.h"
 #include <iostream>
 using namespace std;
