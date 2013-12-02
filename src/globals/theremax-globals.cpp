@@ -31,7 +31,7 @@ SAMPLE * Globals::audioBufferWindow = NULL;
 unsigned int Globals::lastAudioBufferFrames = 0;
 unsigned int Globals::lastAudioBufferChannels = 0;
 
-SAMPLE Globals::cvIntensity = 0;
+SAMPLE Globals::cvIntensity = 1;
 SAMPLE Globals::freq = 220;
 
 Reverb * Globals::reverb = NULL;

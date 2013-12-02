@@ -154,7 +154,7 @@ bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned c
     // Mute external input
     Globals::reverb->fcheckbox1 = true;
     // Add pink noise
-    Globals::reverb->fcheckbox0 = true;
+    Globals::reverb->fcheckbox0 = false;
     
     for (int i = 0; i < THEREMAX_NUMCHANNELS; i++)
     {
