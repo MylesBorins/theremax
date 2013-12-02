@@ -43,7 +43,7 @@
 
 
 
-#if ( defined(__PLATFORM_MACOSX__) || __PLATFORM_LINUX__ || defined(__WINDOWS_PTHREAD__) )
+#if ( defined(__PLATFORM_MACOSX__) || __linux || defined(__WINDOWS_PTHREAD__) )
   #include <pthread.h>
   #define THREAD_TYPE
   typedef pthread_t THREAD_HANDLE;
@@ -60,17 +60,6 @@
   typedef unsigned (__stdcall *THREAD_FUNCTION)(void *);
   typedef CRITICAL_SECTION MUTEX;
   #define CHUCK_THREAD HANDLE
-#endif
-
-// This is repetitive but it might need to be done  
-#if __PLATFORM_LINUX__
-    #include <pthread.h>
-    #define THREAD_TYPE
-    typedef pthread_t THREAD_HANDLE;
-    typedef void * THREAD_RETURN;
-    typedef void * (*THREAD_FUNCTION)(void *);
-    typedef pthread_mutex_t MUTEX;
-    #define CHUCK_THREAD pthread_t
 #endif
 
 
