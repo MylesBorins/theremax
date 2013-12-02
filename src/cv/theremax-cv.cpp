@@ -53,7 +53,7 @@ void TheremaxCV::process()
         Globals::cvIntensity += pow(brightness, 3) * 0.5;
         
         double exponent = (Globals::cvIntensity * -1) + 1;
-        exponent = (exponent * -10) + 1;
+        exponent = (exponent * -6) + 1;
         if (exponent > 1)
         {
             exponent = 1;
