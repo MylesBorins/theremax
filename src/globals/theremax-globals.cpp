@@ -32,6 +32,7 @@ unsigned int Globals::lastAudioBufferFrames = 0;
 unsigned int Globals::lastAudioBufferChannels = 0;
 
 SAMPLE Globals::cvIntensity = 0;
+SAMPLE Globals::freq = 220;
 
 GLboolean Globals::fullscreen = DEFAULT_FULLSCREEN;
 GLboolean Globals::blendScreen = DEFAULT_BLENDSCREEN;

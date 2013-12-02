@@ -53,6 +53,9 @@ public:
     // cv data
     static SAMPLE cvIntensity;
     
+    // global freq
+    static SAMPLE freq;
+    
     // last audio buffer
     static SAMPLE * lastAudioBuffer;
     static SAMPLE * lastAudioBufferMono;

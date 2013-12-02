@@ -22,7 +22,6 @@ int g_prog = 0;
 
 XMutex g_mutex;
 
-
 //-----------------------------------------------------------------------------
 // name: audio_callback
 // desc: audio callback
@@ -34,27 +33,11 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
     
     // HACK: rough time keeping for next notes - this logic really should be
     // somewhere else: e.g., in its own class and not directly in the audio callback!
-    if( g_now > g_nextTime )
-    {
-        // lock (to protect vector)
-        g_mutex.acquire();
-        // move down the vector
-        // if( g_noteIndex < g_notes.size() )
-//         {
-//             // temporary note pointer
-//             Note * n = &g_notes[g_noteIndex];
-//             // note on!
-//             g_synth->noteOn( n->channel, n->pitch, n->velocity * 120 );
-//             // HACK: with a major 3rd above!
-//             g_synth->noteOn( n->channel, n->pitch + 4, n->velocity * 80 );
-//             // check to see next time
-//             g_nextTime += n->duration * THEREMAX_SRATE;
-//             // move to next note for next time
-//             g_noteIndex++;
-//         }
-        // release lock
-        g_mutex.release();
-    }
+    // lock (to protect vector)
+    g_mutex.acquire();
+    // cerr << Globals::freq << endl;
+    // release lock
+    g_mutex.release();
     
     // sum
     SAMPLE sum = 0;

@@ -23,11 +23,6 @@ int main(int argc, char **argv)
         cerr << "[theremax]: cannot initialize real-time audio I/O.." << endl;
         return -1;
     }
-    // if ( !theremax_cv_init( ) )
-    // {
-    //     cerr << "[theremax]: cannot initialize your camera :( ";
-    //     return -1;
-    // }
     
     theremax_audio_start();
     theremax_cv_thread_init();
@@ -40,8 +35,5 @@ int main(int argc, char **argv)
         cin >> input;
         break;
     }
-    
-    
-    
     return 1;
 }
