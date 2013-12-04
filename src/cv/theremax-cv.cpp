@@ -9,7 +9,7 @@
 
 // const string cascadePath = "data/haarcascades/haarcascade_frontalface_alt.xml";
 
-vector<Rect> objects;
+// vector<Rect> objects;
 
 double intensityMin = 1;
 double intensityMax = 0;
@@ -91,7 +91,7 @@ TheremaxCV::~TheremaxCV()
 
 bool TheremaxCV::init()
     
-{
+{    
     camStream = new cv::VideoCapture(CV_CAP_ANY);
 
     if(!camStream->isOpened())
