@@ -67,8 +67,8 @@ void TheremaxCV::process()
         {
             intensityMin = brightness;
         }
-        cerr << "pre: " << brightness;
-        cerr << " post: " << brightness << endl;
+        // cerr << "pre: " << brightness;
+        // cerr << " post: " << brightness << endl;
         Globals::cvIntensity *= 0.5;
         Globals::cvIntensity += pow(brightness, 3) * 0.5;
         

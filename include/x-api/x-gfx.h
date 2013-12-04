@@ -41,6 +41,54 @@
 #include <string>
 
 
+//-----------------------------------------------------------------------------
+// name: struct XTexture
+// desc: image data from loading and image
+//-----------------------------------------------------------------------------
+struct XTexture
+{
+    // texture data
+    GLuint  name;
+    GLfloat diameter;
+
+    // color
+    GLfloat color[4];
+
+    // image data
+    GLfloat origWidth;
+    GLfloat origHeight;
+    GLfloat resizeWidth;
+    GLfloat resizeHeight;
+    
+    // blending factors
+    GLenum sfactor;
+    GLenum dfactor;
+    // enable depth?
+    GLboolean enableDepth;
+    // enable lighting?
+    GLboolean enableLighting;
+
+    // constructor
+    XTexture()
+    : name(0), diameter(1), 
+      origWidth(0), origHeight(0), resizeWidth(0), resizeHeight(0)
+    { color[0] = color[1] = color[2] = color[3] = 1.0f;
+      sfactor = GL_SRC_ALPHA; dfactor = GL_ONE_MINUS_SRC_ALPHA; 
+        enableDepth = true; enableLighting = false; }
+    
+    // copy constructor
+    XTexture( const XTexture & lhs )
+    {
+        name = lhs.name; diameter = lhs.diameter;
+        origWidth = lhs.origWidth; origHeight = lhs.origHeight;
+        resizeWidth = lhs.resizeWidth; resizeHeight = lhs.resizeHeight;
+    }
+    
+    // destructor
+    ~XTexture()
+    { if( name != 0 ) glDeleteTextures( 1, &name ); name = 0; }
+};
+
 
 //-----------------------------------------------------------------------------
 // name: class XGfx

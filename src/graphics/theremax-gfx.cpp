@@ -126,7 +126,7 @@ bool theremax_gfx_init( int argc, const char ** argv )
 
 
 //-----------------------------------------------------------------------------
-// name: theremax_gfx_loop( )
+// name: theremax_gfx_init( )
 // desc: hand off to graphics loop
 //-----------------------------------------------------------------------------
 void theremax_gfx_loop()
@@ -245,7 +245,15 @@ void initialize_simulation()
     // instantiate simulation
     Globals::sim = new THEREMAXSim();
     
-//    // create test teapot
+    THEREMAXSpark * spark = new THEREMAXSpark();
+    
+    spark->set(0, 0.05, 0.5);
+    
+    spark->loc.set(0.5,0.5,0.5);
+    
+    Globals::sim->root().addChild( spark );
+    
+   // // create test teapot
 //    THEREMAXTeapot * teapot = new THEREMAXTeapot();
 //    // set attributes
 //    teapot->col = Globals::ourSoftYellow;
