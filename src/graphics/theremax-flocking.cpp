@@ -33,10 +33,10 @@ void THEREMAXBoid::update( YTimeInterval dt )
     v2 = ((THEREMAXFlock *)parent)->collisionDetect(this);
     v3 = ((THEREMAXFlock *)parent)->potentialVelocity(this);
     v4 = ((THEREMAXFlock *)parent)->tendToPlace(this);
-    // v5 = ((THEREMAXFlock *)parent)->boundPosition(this);
+    v5 = ((THEREMAXFlock *)parent)->boundPosition(this);
     // // 
-    this->vel = this->vel + v1 + v2 + v3 + v4;
-    this->loc = this->loc + this->vel *dt;
+    this->vel = this->vel + v1 + v2 + v3 + v4 + v5;
+    this->loc = this->loc + this->vel;
     
     return;
 };
@@ -119,27 +119,27 @@ Vector3D THEREMAXFlock::boundPosition(THEREMAXBoid * boid)
     Vector3D v;
     if(boid->loc.x < xmin)
     {
-        v.x = 10;
+        v.x = 3 * Globals::cvIntensity;
     }
     else if (boid->loc.x > xmax)
     {
-        v.x = -10;
+        v.x = -3 * Globals::cvIntensity;
     }
     if (boid->loc.y < ymin)
     {
-        v.y = 10;
+        v.y = 3 * Globals::cvIntensity;
     }
     else if (boid->loc.y > ymax)
     {
-        v.y = -10;
+        v.y = -3 * Globals::cvIntensity;
     }
     if (boid->loc.z < zmin)
     {
-        v.z = 10;
+        v.z = 3 * Globals::cvIntensity;
     }
     else if (boid->loc.z > zmax)
     {
-        v.z = -10;
+        v.z = -3 * Globals::cvIntensity;
     }
     return v;
 };
