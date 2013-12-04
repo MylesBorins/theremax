@@ -15,6 +15,7 @@
 #include "x-gfx.h"
 #include "x-loadlum.h"
 #include "x-vector3d.h"
+#include "theremax-fusionCore.h"
 
 #include <iostream>
 #include <vector>
@@ -249,9 +250,15 @@ void initialize_simulation()
     
     spark->set(0, 1, 0.5);
     
+    // THEREMAXBoid * boid = new THEREMAXBoid();
+    
+    THEREMAXFlock * flock = new THEREMAXFlock();
+    flock->init(5);
+    
     // spark->loc.set(0.5,0.5,0.5);
     
-    Globals::sim->root().addChild( spark );
+    // Globals::sim->root().addChild( spark );
+    Globals::sim->root().addChild( flock );
     
    // // create test teapot
 //    THEREMAXTeapot * teapot = new THEREMAXTeapot();

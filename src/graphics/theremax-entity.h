@@ -46,23 +46,4 @@ public:
     Vector3D ALPHA;
 };
 
-
-
-
-//-----------------------------------------------------------------------------
-// name: class THEREMAXTeapot
-// desc: for testing
-//-----------------------------------------------------------------------------
-class THEREMAXTeapot : public YEntity
-{
-public:
-    // update
-    void update( YTimeInterval dt );
-    // render
-    void render();
-};
-
-
-
-
 #endif
