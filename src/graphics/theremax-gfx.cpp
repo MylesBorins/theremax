@@ -253,7 +253,7 @@ void initialize_simulation()
     // THEREMAXBoid * boid = new THEREMAXBoid();
     
     THEREMAXFlock * flock = new THEREMAXFlock();
-    flock->init(10);
+    flock->init(100);
     
     // spark->loc.set(0.5,0.5,0.5);
     

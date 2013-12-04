@@ -34,7 +34,7 @@ void THEREMAXBoid::update( YTimeInterval dt )
     // v3 = ((THEREMAXFlock *)parent)->ruleC(this);
     // // 
     this->vel = this->vel + v1 + v2 + v3;
-    this->loc = this->loc + this->vel;
+    this->loc = this->loc + this->vel * dt;
     
     return;
 };
@@ -83,7 +83,21 @@ Vector3D THEREMAXFlock::ruleB(THEREMAXBoid * boid)
 
 Vector3D THEREMAXFlock::ruleC(THEREMAXBoid * boid)
 {
-    return Vector3D(0,0,0);
+    Vector3D perceivedVelocity;
+    
+    for( vector<YEntity *>::iterator ei = this->children.begin();
+            ei!= this->children.end(); ei++ )
+    {
+        THEREMAXBoid * iteratedBoid = ((THEREMAXBoid *)*ei);
+        if(iteratedBoid != boid)
+        {
+            perceivedVelocity += iteratedBoid->vel;
+        }
+
+    }
+    double scaler = (1 / ((double)this->children.size() - 1));
+    perceivedVelocity *= scaler;
+    return (perceivedVelocity - boid->vel) * 0.125;
 };
 
 void THEREMAXFlock::init(int count)
@@ -91,8 +105,14 @@ void THEREMAXFlock::init(int count)
     for (int i = 0; i < count; i++)
     {
         THEREMAXBoid * boid = new THEREMAXBoid;
-        boid->loc.setXYFromPolar( 0.2, 360 * i / count);
-        // boid->loc.set(i*0.5,i*0.5,i*0.5);
+        if (count % 2)
+        {
+            boid->loc.setXYFromPolar( 0.5 + (i * 0.01), 360 * i / count);
+        }
+        else
+        {
+            boid->loc.set((i*0.1 * -1)+1 ,(i*0.1 * -1)+1,(i*0.1 * -1)+1);
+        }
         this->addChild(boid);
     }
 }
