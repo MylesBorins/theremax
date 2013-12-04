@@ -75,6 +75,11 @@ find_package( OpenCV REQUIRED )
 find_package( OpenGL REQUIRED )
 find_package( GLUT REQUIRED )
 
+# find_package(Boost COMPONENTS system filesystem REQUIRED)
+# include_directories(${Boost_INCLUDE_DIR})
+# link_directories(${Boost_LIBRARY_DIR})
+
+
 # Get liblo in there
 find_package( liblo REQUIRED )
 include_directories(${liblo_INCLUDE_DIRS})
@@ -182,6 +187,8 @@ set(core_SOURCES
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-sim.h
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-gfx.cpp
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-gfx.h
+  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-fusionCore.cpp
+  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-fusionCore.h
   
   ${xyapi_SOURCES}
 )
@@ -197,6 +204,7 @@ target_link_libraries( theremax
   ${OpenCV_LIBS}
   ${GLUT_LIBRARY}
   ${OPENGL_LIBRARY}
+  # ${Boost_LIBRARIES}
   ${LIBS}
 )
 
