@@ -59,6 +59,7 @@ public:
     Vector3D potentialVelocity(THEREMAXBoid * boid);
     Vector3D tendToPlace(THEREMAXBoid * boid);
     Vector3D boundPosition(THEREMAXBoid * boid);
+    Vector3D boundVelocity(THEREMAXBoid * boid);
     // update
     // void update( YTimeInterval dt);
     // void render();

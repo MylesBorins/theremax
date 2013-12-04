@@ -89,16 +89,16 @@ void THEREMAXSpark::render( )
     // enable texture
     glEnable( GL_TEXTURE_2D );
     // set blend function
-    glBlendFunc( GL_ONE, GL_ONE );
-    // glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+    // glBlendFunc( GL_ONE, GL_ONE );
+    glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
     // enable blend
     glEnable( GL_BLEND );
     
     // bind to texture
-    glBindTexture( GL_TEXTURE_2D, Globals::textures[this->texture] );
+    // glBindTexture( GL_TEXTURE_2D, Globals::textures[this->texture] );
     
     // set color
-    // glColor4f( col.x, col.y, col.z, alpha * ALPHA.value );
+    glColor4f( col.x, col.y, col.z, alpha * ALPHA.value );
     
     // set vertex coordinates
     glVertexPointer( 2, GL_FLOAT, 0, this->vertices );

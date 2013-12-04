@@ -15,13 +15,15 @@ THEREMAXBoid::THEREMAXBoid()
     ALPHA.set(1,1,1);
     this->spark = new THEREMAXSpark;
     spark->set(0, 0.1, 0.5);
+    spark->col.set(1,1,1);
+    spark->ALPHA.value = 0.5;
     
     this->addChild(spark);
 }
 
 void THEREMAXBoid::update( YTimeInterval dt )
 {
-    Vector3D v1, v2, v3, v4;
+    Vector3D v1, v2, v3, v4, v5;
 
     // slew
     ALPHA.interp( dt );
@@ -31,9 +33,10 @@ void THEREMAXBoid::update( YTimeInterval dt )
     v2 = ((THEREMAXFlock *)parent)->collisionDetect(this);
     v3 = ((THEREMAXFlock *)parent)->potentialVelocity(this);
     v4 = ((THEREMAXFlock *)parent)->tendToPlace(this);
+    // v5 = ((THEREMAXFlock *)parent)->boundPosition(this);
     // // 
     this->vel = this->vel + v1 + v2 + v3 + v4;
-    this->loc = this->loc + this->vel;
+    this->loc = this->loc + this->vel *dt;
     
     return;
 };
@@ -101,9 +104,45 @@ Vector3D THEREMAXFlock::potentialVelocity(THEREMAXBoid * boid)
 
 Vector3D THEREMAXFlock::tendToPlace(THEREMAXBoid * boid)
 {
-    Vector3D place(0,3,0);
-    return (place - boid->loc) * 0.0001;
+    Vector3D place(0,0,0);
+    double tend = (Globals::cvIntensity * -1 + 1);
+    if (tend > 0.6)
+    {
+        return (place - boid->loc) * (Globals::cvIntensity * -1 + 1);
+    }
+    return Vector3D(0,0,0);//(place - boid->loc) * 0.0001 * (Globals::cvIntensity * -1 + 1);
 }
+
+Vector3D THEREMAXFlock::boundPosition(THEREMAXBoid * boid)
+{
+    int xmin = -1, xmax = 1, ymin = -1, ymax = 1, zmin = -1, zmax = 1;
+    Vector3D v;
+    if(boid->loc.x < xmin)
+    {
+        v.x = 10;
+    }
+    else if (boid->loc.x > xmax)
+    {
+        v.x = -10;
+    }
+    if (boid->loc.y < ymin)
+    {
+        v.y = 10;
+    }
+    else if (boid->loc.y > ymax)
+    {
+        v.y = -10;
+    }
+    if (boid->loc.z < zmin)
+    {
+        v.z = 10;
+    }
+    else if (boid->loc.z > zmax)
+    {
+        v.z = -10;
+    }
+    return v;
+};
 
 void THEREMAXFlock::init(int count)
 {
