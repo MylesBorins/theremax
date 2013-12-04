@@ -70,7 +70,7 @@ void THEREMAXSpark::update( YTimeInterval dt )
 {
     // slew
     ALPHA.interp( dt );
-    this->sca.set((Globals::cvIntensity * -1) + 1, (Globals::cvIntensity * -1) + 1, (Globals::cvIntensity * -1) + 1);
+    // this->sca.set((Globals::cvIntensity * -1) + 1, (Globals::cvIntensity * -1) + 1, (Globals::cvIntensity * -1) + 1);
 
     this->alpha = ALPHA.value;
 }

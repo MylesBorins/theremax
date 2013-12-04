@@ -246,14 +246,14 @@ void initialize_simulation()
     // instantiate simulation
     Globals::sim = new THEREMAXSim();
     
-    THEREMAXSpark * spark = new THEREMAXSpark();
+    // THEREMAXSpark * spark = new THEREMAXSpark();
     
-    spark->set(0, 1, 0.5);
+    // spark->set(0, 1, 0.5);
     
     // THEREMAXBoid * boid = new THEREMAXBoid();
     
     THEREMAXFlock * flock = new THEREMAXFlock();
-    flock->init(5);
+    flock->init(10);
     
     // spark->loc.set(0.5,0.5,0.5);
     
