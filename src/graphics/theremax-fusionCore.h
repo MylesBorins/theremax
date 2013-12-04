@@ -54,9 +54,9 @@ public:
     void init(int count);
     
 public:
-    Vector3D ruleA(THEREMAXBoid * boid, YTimeInterval dt);
-    Vector3D ruleB(THEREMAXBoid * boid, YTimeInterval dt);
-    Vector3D ruleC(THEREMAXBoid * boid, YTimeInterval dt);
+    Vector3D ruleA(THEREMAXBoid * boid);
+    Vector3D ruleB(THEREMAXBoid * boid);
+    Vector3D ruleC(THEREMAXBoid * boid);
     // update
     // void update( YTimeInterval dt);
     // void render();
