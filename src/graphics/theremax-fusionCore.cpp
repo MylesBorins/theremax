@@ -71,7 +71,7 @@ Vector3D THEREMAXFlock::ruleB(THEREMAXBoid * boid)
         {
             Vector3D diff = (iteratedBoid->loc - boid->loc);
             double magnitude = diff.magnitude();
-            if(magnitude < 0.001)
+            if(magnitude < 0.2)
             {
                 collision = collision -(iteratedBoid->loc - boid->loc);
             }
@@ -105,14 +105,9 @@ void THEREMAXFlock::init(int count)
     for (int i = 0; i < count; i++)
     {
         THEREMAXBoid * boid = new THEREMAXBoid;
-        if (count % 2)
-        {
-            boid->loc.setXYFromPolar( 0.5 + (i * 0.01), 360 * i / count);
-        }
-        else
-        {
-            boid->loc.set((i*0.1 * -1)+1 ,(i*0.1 * -1)+1,(i*0.1 * -1)+1);
-        }
+        boid->loc.set(XFun::rand2f(-1.0,1.0),XFun::rand2f(-1.0,1.0), XFun::rand2f(-1.0,1.0));
+        // boid->loc.setXYFromPolar( 0.8 - i * 0.01, (360 * i / count) + i * 10);
+
         this->addChild(boid);
     }
 }
