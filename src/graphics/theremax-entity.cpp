@@ -69,7 +69,8 @@ void THEREMAXSpark::update( YTimeInterval dt )
 {
     // slew
     ALPHA.interp( dt );
-    // set
+    this->sca.set((Globals::cvIntensity * -1) + 1, (Globals::cvIntensity * -1) + 1, (Globals::cvIntensity * -1) + 1);
+
     this->alpha = ALPHA.value;
 }
 
@@ -120,32 +121,3 @@ void THEREMAXSpark::render( )
 }
 
 
-
-
-//-------------------------------------------------------------------------------
-// name: update()
-// desc: ...
-//-------------------------------------------------------------------------------
-void THEREMAXTeapot::update( YTimeInterval dt )
-{
-    // do nothing for now
-}
-
-
-
-
-//-------------------------------------------------------------------------------
-// name: render()
-// desc: ...
-//-------------------------------------------------------------------------------
-void THEREMAXTeapot::render()
-{
-    // enable lighting
-    glEnable( GL_LIGHTING );
-    // set color
-    glColor4f( col.x, col.y, col.z, alpha );
-    // render stuff
-    glutSolidTeapot( 1.0 );
-    // disable lighting
-    glDisable( GL_LIGHTING );
-}

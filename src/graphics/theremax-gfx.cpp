@@ -247,9 +247,9 @@ void initialize_simulation()
     
     THEREMAXSpark * spark = new THEREMAXSpark();
     
-    spark->set(0, 0.05, 0.5);
+    spark->set(0, 1, 0.5);
     
-    spark->loc.set(0.5,0.5,0.5);
+    // spark->loc.set(0.5,0.5,0.5);
     
     Globals::sim->root().addChild( spark );
     
