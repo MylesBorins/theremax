@@ -187,8 +187,8 @@ set(core_SOURCES
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-sim.h
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-gfx.cpp
   ${CMAKE_SOURCE_DIR}/src/graphics/theremax-gfx.h
-  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-fusionCore.cpp
-  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-fusionCore.h
+  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-flocking.cpp
+  ${CMAKE_SOURCE_DIR}/src/graphics/theremax-flocking.h
   
   ${xyapi_SOURCES}
 )

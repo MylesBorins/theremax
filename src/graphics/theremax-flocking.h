@@ -1,12 +1,12 @@
 //-----------------------------------------------------------------------------
-// name: theremax-fusionCore.h
+// name: theremax-flocking.h
 // desc: entities for visualization
 //
 // author: Myles Borins
 //   date: 2013
 //-----------------------------------------------------------------------------
-#ifndef __THEREMAX_FUSIONCORE_H__
-#define __THEREMAX_FUSIONCORE_H__
+#ifndef __THEREMAX_FLOCKING_H__
+#define __THEREMAX_FLOCKING_H__
 
 #include "y-entity.h"
 #include "theremax-entity.h"
@@ -54,9 +54,11 @@ public:
     void init(int count);
     
 public:
-    Vector3D ruleA(THEREMAXBoid * boid);
-    Vector3D ruleB(THEREMAXBoid * boid);
-    Vector3D ruleC(THEREMAXBoid * boid);
+    Vector3D centerMass(THEREMAXBoid * boid);
+    Vector3D collisionDetect(THEREMAXBoid * boid);
+    Vector3D potentialVelocity(THEREMAXBoid * boid);
+    Vector3D tendToPlace(THEREMAXBoid * boid);
+    Vector3D boundPosition(THEREMAXBoid * boid);
     // update
     // void update( YTimeInterval dt);
     // void render();

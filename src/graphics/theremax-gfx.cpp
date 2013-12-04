@@ -15,7 +15,7 @@
 #include "x-gfx.h"
 #include "x-loadlum.h"
 #include "x-vector3d.h"
-#include "theremax-fusionCore.h"
+#include "theremax-flocking.h"
 
 #include <iostream>
 #include <vector>

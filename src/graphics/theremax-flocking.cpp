@@ -6,7 +6,7 @@
 //   date: 2013
 //-----------------------------------------------------------------------------
 
-#include "theremax-fusionCore.h"
+#include "theremax-flocking.h"
 #include "theremax-globals.h"
 #include "x-fun.h"
 
@@ -21,26 +21,25 @@ THEREMAXBoid::THEREMAXBoid()
 
 void THEREMAXBoid::update( YTimeInterval dt )
 {
-    Vector3D v1(0,0,0);
-    Vector3D v2(0,0,0);
-    Vector3D v3(0,0,0);
+    Vector3D v1, v2, v3, v4;
 
     // slew
     ALPHA.interp( dt );
     this->alpha = ALPHA.value;
     
-    v1 = ((THEREMAXFlock *)parent)->ruleA(this);
-    v2 = ((THEREMAXFlock *)parent)->ruleB(this);
-    // v3 = ((THEREMAXFlock *)parent)->ruleC(this);
+    v1 = ((THEREMAXFlock *)parent)->centerMass(this);
+    v2 = ((THEREMAXFlock *)parent)->collisionDetect(this);
+    v3 = ((THEREMAXFlock *)parent)->potentialVelocity(this);
+    v4 = ((THEREMAXFlock *)parent)->tendToPlace(this);
     // // 
-    this->vel = this->vel + v1 + v2 + v3;
+    this->vel = this->vel + v1 + v2 + v3 + v4;
     this->loc = this->loc + this->vel;
     
     return;
 };
 
 
-Vector3D THEREMAXFlock::ruleA(THEREMAXBoid * boid)
+Vector3D THEREMAXFlock::centerMass(THEREMAXBoid * boid)
 {
     Vector3D perceivedCenter;
     
@@ -59,7 +58,7 @@ Vector3D THEREMAXFlock::ruleA(THEREMAXBoid * boid)
     return (perceivedCenter - boid->loc) * 0.01;
 };
 
-Vector3D THEREMAXFlock::ruleB(THEREMAXBoid * boid)
+Vector3D THEREMAXFlock::collisionDetect(THEREMAXBoid * boid)
 {
     Vector3D collision;
     
@@ -81,7 +80,7 @@ Vector3D THEREMAXFlock::ruleB(THEREMAXBoid * boid)
     return collision;
 };
 
-Vector3D THEREMAXFlock::ruleC(THEREMAXBoid * boid)
+Vector3D THEREMAXFlock::potentialVelocity(THEREMAXBoid * boid)
 {
     Vector3D perceivedVelocity;
     
@@ -99,6 +98,12 @@ Vector3D THEREMAXFlock::ruleC(THEREMAXBoid * boid)
     perceivedVelocity *= scaler;
     return (perceivedVelocity - boid->vel) * 0.125;
 };
+
+Vector3D THEREMAXFlock::tendToPlace(THEREMAXBoid * boid)
+{
+    Vector3D place(0,3,0);
+    return (place - boid->loc) * 0.0001;
+}
 
 void THEREMAXFlock::init(int count)
 {
