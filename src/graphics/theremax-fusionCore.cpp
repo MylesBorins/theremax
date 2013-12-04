@@ -34,7 +34,7 @@ void THEREMAXBoid::update( YTimeInterval dt )
     // v3 = ((THEREMAXFlock *)parent)->ruleC(this);
     // // 
     this->vel = this->vel + v1 + v2 + v3;
-    this->loc = this->loc + this->vel * dt;
+    this->loc = this->loc + this->vel;
     
     return;
 };

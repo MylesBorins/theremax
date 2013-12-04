@@ -254,82 +254,13 @@ void initialize_simulation()
     
     THEREMAXFlock * flock = new THEREMAXFlock();
     flock->init(1000);
+    flock->loc.set(0,3,0);
     
     // spark->loc.set(0.5,0.5,0.5);
     
     // Globals::sim->root().addChild( spark );
     Globals::sim->root().addChild( flock );
     
-   // // create test teapot
-//    THEREMAXTeapot * teapot = new THEREMAXTeapot();
-//    // set attributes
-//    teapot->col = Globals::ourSoftYellow;
-//    teapot->loc.z = -10;
-//    // add to simulation
-//    Globals::sim->root().addChild( teapot );
-//    
-//    // create test teapot
-//    teapot = new THEREMAXTeapot();
-//    // set attributes
-//    teapot->col = Globals::ourBlue;
-//    teapot->loc.set( -2, 2, -5 );
-//    // add to simulation
-//    Globals::sim->root().addChild( teapot );
-//    
-//    // create test teapot
-//    teapot = new THEREMAXTeapot();
-//    // set attributes
-//    teapot->col = Globals::ourGreen;
-//    teapot->loc.set( 0, 0, 0 );
-//    teapot->sca.set( .2, .2, .2 );
-//    // add to simulation
-//    Globals::sim->root().addChild( teapot );
-
-    // create a spark
-    // g_jellyfish = new THEREMAXJellyFish();
-    // set attributes
-    // g_jellyfish->set( THEREMAX_TEX_JELLY_BODY, 1.0f, 1.0f );
-    // add to simulation
-    // Globals::sim->root().addChild( g_jellyfish );
-//
-//    // create a spark
-//    spark = new THEREMAXSpark();
-//    // set attributes
-//    spark->set( THEREMAX_TEX_FLARE_TNG_1, .5f, 1.0f );
-//    spark->loc.set( .1, 0, 0 );
-//    // add to simulation
-//    Globals::sim->root().addChild( spark );
-    
-//    // bokeh
-//    YBokeh * bokeh = new YBokeh();
-//    bokeh->set( 1, 1, 1, 1, THEREMAX_TEX_FLARE_TNG_5 );
-//    bokeh->setBokehParams(0, 1, 10, Vector3D(0,0,0), Vector3D(1, 1, .5 ) );
-//    Globals::sim->root().addChild( bokeh );
-    
-//    for( int i = 0; i < 2000; i++ )
-//    {
-//        // create a spark
-//        YBokeh * bokeh = new YBokeh();
-//        // set attributes
-//        bokeh->set( 1.0f, 1.0f, 1.0f, 1.0f, THEREMAX_TEX_FLARE_TNG_5 );
-//        bokeh->sca.set( 1, 1, 1 );
-//        // set bokeh
-//        bokeh->setBokehParams( // initial time
-//                              XFun::rand2f(0,10),
-//                              // freq
-//                              XFun::rand2f(1,3),
-//                              // time step
-//                              50,
-//                              // location
-//                              Vector3D(XFun::rand2f(-2,2),XFun::rand2f(-1,1), XFun::rand2f(-1,1)),
-//                              // color
-//                              Vector3D(XFun::rand2f(0,.1),XFun::rand2f(0,.2), XFun::rand2f(0,.1)) );
-//        // alpha
-//        bokeh->setAlpha( 1 );
-//        // add to simulation
-//        Globals::sim->root().addChild( bokeh );
-//        g_bokehs.push_back( bokeh );
-//    }
 }
 
 
@@ -710,35 +641,6 @@ void keyboardFunc( unsigned char key, int x, int y )
     // post redisplay
     glutPostRedisplay( );
 }
-
-
-
-// void addBokeh( float x, float y )
-// {
-//     // create a spark
-//     YBokeh * bokeh = new YBokeh();
-//     // set attributes
-//     bokeh->set( 1.0f, 1.0f, 1.0f, 1.0f, THEREMAX_TEX_JELLY_BODY );
-//     bokeh->sca.set( 1, 1, 1 );
-//     // set bokeh
-//     bokeh->setBokehParams( // initial time
-//                           XFun::rand2f(0,10),
-//                           // freq
-//                           XFun::rand2f(.1,.2),
-//                           // time step
-//                           50,
-//                           // location
-//                           Vector3D( x, y, 0 ), // Vector3D(XFun::rand2f(-1,1),XFun::rand2f(-1,1), XFun::rand2f(-1,1)),
-//                           // color
-//                           Vector3D(XFun::rand2f(0,.7),XFun::rand2f(0,1), XFun::rand2f(0,.7)) );
-//     // alpha
-//     bokeh->setAlpha( 1 );
-//     // add to simulation
-//     Globals::sim->root().addChild( bokeh );
-//     g_bokehs.push_back( bokeh );
-// }
-
-
 
 
 //-----------------------------------------------------------------------------
