@@ -252,15 +252,19 @@ void initialize_simulation()
     
     // THEREMAXBoid * boid = new THEREMAXBoid();
     
-    THEREMAXFlock * flock = new THEREMAXFlock();
-    flock->init(1000);
-    flock->loc.set(0,3,0);
+    vector<THEREMAXFlock *> flockVector;
+    
+    for (int i = 0; i < 1000; i++)
+    {
+        THEREMAXFlock * flock = new THEREMAXFlock;
+        flock->init(10);
+        flock->loc.set(0.,3.,0.);
+        Globals::sim->root().addChild(flock);
+    }
     
     // spark->loc.set(0.5,0.5,0.5);
     
     // Globals::sim->root().addChild( spark );
-    Globals::sim->root().addChild( flock );
-    
 }
 
 
