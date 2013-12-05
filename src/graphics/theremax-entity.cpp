@@ -40,7 +40,7 @@ void THEREMAXSpark::set( int _texture, float _size, float _alpha )
 //-----------------------------------------------------------------------------
 void THEREMAXSpark::setSize( float _size )
 {
-    _size *= 0.5f;
+    _size *= 0.3f;
     vertices[0] = -_size; vertices[1] = -_size;
     vertices[2] = _size; vertices[3] = -_size;
     vertices[6] = _size; vertices[7] = _size;

@@ -15,8 +15,10 @@ THEREMAXBoid::THEREMAXBoid()
     ALPHA.set(1,1,1);
     this->spark = new THEREMAXSpark;
     spark->set(0, 0.1, 0.5);
-    spark->col.set(1,1,1);
-    spark->ALPHA.value = 0.5;
+    // spark->col.set(0,XFun::rand2f(0.5, 0.6),.5);
+    spark->ALPHA.value = 0.1;
+    spark->ALPHA.goal = XFun::rand2f(0.2, 0.6);
+    spark->setSize(XFun::rand2f(0.1, 0.3));
     
     this->addChild(spark);
 }
@@ -35,8 +37,10 @@ void THEREMAXBoid::update( YTimeInterval dt )
     v4 = ((THEREMAXFlock *)parent)->tendToPlace(this);
     v5 = ((THEREMAXFlock *)parent)->boundPosition(this);
     // // 
-    this->vel = this->vel + v1 + v2 + v3 + v4 + v5;
+
+    this->vel = (this->vel + v1 + v2 + v3 + v4 + v5) * dt;
     this->loc = this->loc + this->vel;
+    
     
     return;
 };
@@ -73,7 +77,7 @@ Vector3D THEREMAXFlock::collisionDetect(THEREMAXBoid * boid)
         {
             Vector3D diff = (iteratedBoid->loc - boid->loc);
             double magnitude = diff.magnitude();
-            if(magnitude < 0.2)
+            if(magnitude < 3 * Globals::cvIntensity)
             {
                 collision = collision -(iteratedBoid->loc - boid->loc);
             }
@@ -106,40 +110,40 @@ Vector3D THEREMAXFlock::tendToPlace(THEREMAXBoid * boid)
 {
     Vector3D place(0,0,0);
     double tend = (Globals::cvIntensity * -1 + 1);
-    if (tend > 0.6)
+    if (tend > .9)
     {
-        return (place - boid->loc) * (Globals::cvIntensity * -1 + 1);
+        return (place - boid->loc) * ((Globals::cvIntensity * -1) + 1);
     }
-    return Vector3D(0,0,0);//(place - boid->loc) * 0.0001 * (Globals::cvIntensity * -1 + 1);
+    return (place - boid->loc) * 0.000001;//(place - boid->loc) * 0.0001 * (Globals::cvIntensity * -1 + 1);
 }
 
 Vector3D THEREMAXFlock::boundPosition(THEREMAXBoid * boid)
 {
-    int xmin = -1, xmax = 1, ymin = -1, ymax = 1, zmin = -1, zmax = 1;
+    int xmin = -3, xmax = 3, ymin = -5, ymax = 1, zmin = -3, zmax = 3;
     Vector3D v;
     if(boid->loc.x < xmin)
     {
-        v.x = 3 * Globals::cvIntensity;
+        v.x = 1.5 * Globals::cvIntensity;
     }
     else if (boid->loc.x > xmax)
     {
-        v.x = -3 * Globals::cvIntensity;
+        v.x = -1.5 * Globals::cvIntensity;
     }
     if (boid->loc.y < ymin)
     {
-        v.y = 3 * Globals::cvIntensity;
+        v.y = 1.5 * Globals::cvIntensity;
     }
     else if (boid->loc.y > ymax)
     {
-        v.y = -3 * Globals::cvIntensity;
+        v.y = -1.5 * Globals::cvIntensity;
     }
     if (boid->loc.z < zmin)
     {
-        v.z = 3 * Globals::cvIntensity;
+        v.z = 1.5 * Globals::cvIntensity;
     }
     else if (boid->loc.z > zmax)
     {
-        v.z = -3 * Globals::cvIntensity;
+        v.z = -1.5 * Globals::cvIntensity;
     }
     return v;
 };
