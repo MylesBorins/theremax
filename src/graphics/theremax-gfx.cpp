@@ -254,7 +254,7 @@ void initialize_simulation()
     
     vector<THEREMAXFlock *> flockVector;
     
-    for (int i = 0; i < 1000; i++)
+    for (int i = 0; i < 2000; i++)
     {
         THEREMAXFlock * flock = new THEREMAXFlock;
         flock->init(10);

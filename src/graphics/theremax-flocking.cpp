@@ -125,31 +125,31 @@ Vector3D THEREMAXFlock::tendToPlace(THEREMAXBoid * boid)
 
 Vector3D THEREMAXFlock::boundPosition(THEREMAXBoid * boid)
 {
-    int xmin = -3, xmax = 3, ymin = -5, ymax = 1, zmin = -15, zmax = 1;
+    int xmin = -30, xmax = 30, ymin = -50, ymax = 10, zmin = -150, zmax = 10;
     Vector3D v;
     if(boid->loc.x < xmin)
     {
-        v.x = 1.5 * Globals::cvIntensity;
+        v.x = 10 * Globals::cvIntensity;
     }
     else if (boid->loc.x > xmax)
     {
-        v.x = -1.5 * Globals::cvIntensity;
+        v.x = -10 * Globals::cvIntensity;
     }
     if (boid->loc.y < ymin)
     {
-        v.y = 1.5 * Globals::cvIntensity;
+        v.y = 10 * Globals::cvIntensity;
     }
     else if (boid->loc.y > ymax)
     {
-        v.y = -1.5 * Globals::cvIntensity;
+        v.y = -10 * Globals::cvIntensity;
     }
     if (boid->loc.z < zmin)
     {
-        v.z = 1.5 * Globals::cvIntensity;
+        v.z = 10 * Globals::cvIntensity;
     }
     else if (boid->loc.z > zmax)
     {
-        v.z = -1.5 * Globals::cvIntensity;
+        v.z = -10 * Globals::cvIntensity;
     }
     return v;
 };
