@@ -38,8 +38,8 @@ void THEREMAXBoid::update( YTimeInterval dt )
     v5 = ((THEREMAXFlock *)parent)->boundPosition(this);
     // // 
 
-    this->vel = (this->vel + v1 + v2 + v3 + v4 + v5) * dt;
-    this->loc = this->loc + this->vel;
+    this->vel = (this->vel + v1 + v2 + v3 + v4 + v5);
+    this->loc = this->loc + this->vel * dt;
     
     
     return;
@@ -77,7 +77,7 @@ Vector3D THEREMAXFlock::collisionDetect(THEREMAXBoid * boid)
         {
             Vector3D diff = (iteratedBoid->loc - boid->loc);
             double magnitude = diff.magnitude();
-            if(magnitude < 3 * Globals::cvIntensity)
+            if(magnitude < 0.4)
             {
                 collision = collision -(iteratedBoid->loc - boid->loc);
             }
@@ -110,7 +110,7 @@ Vector3D THEREMAXFlock::tendToPlace(THEREMAXBoid * boid)
 {
     Vector3D place(0,0,0);
     double tend = (Globals::cvIntensity * -1 + 1);
-    if (tend > .9)
+    if (tend > .8)
     {
         return (place - boid->loc) * ((Globals::cvIntensity * -1) + 1);
     }
@@ -119,7 +119,7 @@ Vector3D THEREMAXFlock::tendToPlace(THEREMAXBoid * boid)
 
 Vector3D THEREMAXFlock::boundPosition(THEREMAXBoid * boid)
 {
-    int xmin = -3, xmax = 3, ymin = -5, ymax = 1, zmin = -3, zmax = 3;
+    int xmin = -3, xmax = 3, ymin = -5, ymax = 1, zmin = -5, zmax = 1;
     Vector3D v;
     if(boid->loc.x < xmin)
     {
