@@ -177,3 +177,16 @@ void THEREMAXFlock::init(int count)
         this->addChild(boid);
     }
 }
+
+void THEREMAXFlock::init(int flocks, int boids)
+{
+    for (int i = 0; i < flocks; i++)
+    {
+        THEREMAXFlock * flock = new THEREMAXFlock;
+        flock->init(boids);
+        flock->loc.set(XFun::rand2f(-1.0,1.0),XFun::rand2f(-1.0,1.0), XFun::rand2f(-1.0,1.0));
+        // boid->loc.setXYFromPolar( 0.8 - i * 0.01, (360 * i / count) + i * 10);
+
+        this->addChild(flock);
+    }
+}

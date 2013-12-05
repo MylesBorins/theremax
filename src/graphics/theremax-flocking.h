@@ -52,6 +52,7 @@ public:
     //set
     void set();
     void init(int count);
+    void init(int flocks, int boids);
     
 public:
     Vector3D centerMass(THEREMAXBoid * boid);
