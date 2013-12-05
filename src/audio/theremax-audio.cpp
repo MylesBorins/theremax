@@ -43,11 +43,6 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
         }
     }
     
-    g_mutex.acquire();
-    // cerr << Globals::freq << endl;
-    // release lock
-    g_mutex.release();
-    
     // sum
     SAMPLE sum = 0;
     // num channels
