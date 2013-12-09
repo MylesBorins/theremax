@@ -7,10 +7,13 @@
 //-----------------------------------------------------------------------------
 #include "theremax-cv.h"
 
-const string cascadePath = "data/haarcascades/palm.xml";
+const string cascadePath = "data/haarcascades/aGest.xml";
 
 CascadeClassifier handCascade;
 
+Mat background;
+
+float alpha = 0.5f;
 
 TheremaxCV::~TheremaxCV()
 {
@@ -35,42 +38,55 @@ bool TheremaxCV::init()
         cerr << "Oh shit" << endl;
         return -1;
     }
-
+    
     return true;
 };
 
 void TheremaxCV::process()
 {
-    Mat cameraFrame, copy;
+    Mat cameraFrame;
     
-    camStream->read(cameraFrame);
-    
-    if ( !cameraFrame.empty( ) )
+    if ( background.empty() )
     {
-        this->detectHand( cameraFrame );
+        camStream->read(background);
+        // waitKey(30);
     }
+    else
+    {
+        camStream->read(cameraFrame);
     
-    waitKey(30);
+        if ( !cameraFrame.empty( ) )
+        {
+            this->detectHand( cameraFrame );
+        }
+    }
+    // waitKey(30);
 }
 
 void TheremaxCV::detectHand( Mat frame )
 {
-    vector<Rect> hands;
-    Mat frameGray;
+    if (!background.empty() )
+    {
+        background = alpha * background + (1 - alpha) * frame;
+    }
+
     
-    cvtColor( frame, frameGray, CV_BGR2GRAY );
-    equalizeHist( frameGray, frameGray );
-    
-    handCascade.detectMultiScale( 
-        frameGray,
-        hands,
-        1.1,
-        2,
-        0 | CV_HAAR_SCALE_IMAGE,
-        Size(30, 30)
-    );
-        
-    cerr << hands.size() << endl;
+    // vector<Rect> hands;
+    // Mat frameGray;
+    // 
+    // cvtColor( frame, frameGray, CV_BGR2GRAY );
+    // equalizeHist( frameGray, frameGray );
+    // 
+    // handCascade.detectMultiScale( 
+    //     frame,
+    //     hands,
+    //     1.1,
+    //     2,
+    //     0 | CV_HAAR_SCALE_IMAGE,
+    //     Size(30, 30)
+    // );
+    //     
+    // cerr << hands.size() << endl;
 }
 
 void TheremaxCV::updateGlobals( )
