@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <opencv_storage>
 <!-- Automatically converted from ./contract_palm4/haarcascade, window size = 20x20 -->
+  <!-- https://github.com/yandol/GstHanddetect -->
 <CP04_3 type_id="opencv-haar-classifier">
   <size>
     20 20</size>

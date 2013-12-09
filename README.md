@@ -31,6 +31,12 @@ make
 
 !!! Profit !!!
 
+##Some places / People I took code from
+
+https://github.com/yandol/GstHanddetect ~ Hand Cascades
+Ge Wang ~ MCD Api
+
+
 ##License
 
 GPL ~ License included
