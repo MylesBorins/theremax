@@ -29,6 +29,7 @@ public:
     ~TheremaxCV();
 public:
     bool init();
+    void detectHand( Mat frame );
     void updateIntensity(Mat cameraFrame);
     void process();
     void updateGlobals( );
