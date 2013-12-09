@@ -29,8 +29,9 @@ public:
     ~TheremaxCV();
 public:
     bool init();
-    void getIntensity();
+    void updateIntensity(Mat cameraFrame);
     void process();
+    void updateGlobals( );
 public:
     cv::VideoCapture * camStream;
     cv::CascadeClassifier cascadeClassifier;
