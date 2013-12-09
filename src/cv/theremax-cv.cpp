@@ -180,15 +180,3 @@ void TheremaxCV::process()
     }
     waitKey(30);
 }
-
-
-void TheremaxCV::getIntensity()
-{
-    Mat cameraFrame;
-    camStream->read(cameraFrame);
-    Mat frameHSV;
-    double brightness;
-    _getBrightness(cameraFrame, brightness);
-    Globals::cvIntensity *= 0.5;
-    Globals::cvIntensity += (brightness * 0.5);
-}
