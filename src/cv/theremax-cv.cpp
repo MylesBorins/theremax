@@ -7,9 +7,11 @@
 //-----------------------------------------------------------------------------
 #include "theremax-cv.h"
 
-// const string cascadePath = "data/haarcascades/haarcascade_frontalface_alt.xml";
+const string cascadePath = "data/haarcascades/palm.xml";
 
-// vector<Rect> objects;
+CascadeClassifier handClassifier;
+
+vector<Rect> objects;
 
 double intensityMin = 1;
 double intensityMax = 0;
@@ -35,7 +37,7 @@ void _getBrightness(const Mat& frame, double& brightness)
 }
 
 
-// void detectAndDraw( Mat& img, CascadeClassifier& cascade,
+// void detect( Mat& img, CascadeClassifier& cascade,
 //                     double scale, bool tryflip )
 // {
 //     int i = 0;
@@ -100,7 +102,16 @@ bool TheremaxCV::init()
         cout << "Cannot open cam" << endl;
         return -1;
     }
+    
+    // This seems to be needed to do anything
+    
+    if( !handClassifier.load( cascadePath ) )
+    { 
+        cerr << "Oh shit" << endl;
+    }
+    
     cvNamedWindow(CAMERA_OUTPUT_WINDOW_NAME, CV_WINDOW_AUTOSIZE);
+    
     return true;
 };
 
@@ -109,14 +120,14 @@ void TheremaxCV::process()
     Mat cameraFrame, copy;
     
     camStream->read(cameraFrame);
-    // detectAndDraw( cameraFrame, cascadeClassifier, 1, 0 );
+    // detect( cameraFrame, cascadeClassifier, 1, 0 );
     // cascadeClassifier->detectMultiScale(cameraFrame, objects,
-//         1.1, 2, 0
-//         //|CASCADE_FIND_BIGGEST_OBJECT
-//         //|CASCADE_DO_ROUGH_SEARCH
-//         |CASCADE_SCALE_IMAGE
-//         ,
-//         Size(30, 30) );
+    //     1.1, 2, 0
+    //     //|CASCADE_FIND_BIGGEST_OBJECT
+    //     //|CASCADE_DO_ROUGH_SEARCH
+    //     |CASCADE_SCALE_IMAGE
+    //     ,
+    //     Size(30, 30) );
 //     
 //     cerr << objects.size() << endl;
     
