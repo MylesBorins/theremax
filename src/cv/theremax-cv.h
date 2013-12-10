@@ -10,13 +10,12 @@
 
 //http://docs.opencv.org/modules/imgproc/doc/histograms.html?highlight=histogram#CvHistogram*%20cvCreateHist%28int%20dims,%20int*%20sizes,%20int%20type,%20float**%20ranges,%20int%20uniform%29
 #include <iostream>
-#include <fstream>
-#include <highgui.h>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/objdetect/objdetect.hpp>
+// #include <fstream>
+// #include <highgui.h>
+#include <opencv2/opencv.hpp>
+// #include <opencv2/imgproc/imgproc.hpp>
+// #include <opencv2/objdetect/objdetect.hpp>
 #include "theremax-globals.h"
-#include "x-thread.h"
-#include "x-fun.h"
 
 using namespace std;
 using namespace cv;
@@ -29,13 +28,15 @@ public:
     ~TheremaxCV();
 public:
     bool init();
-    void detectHand( Mat frame );
-    void updateIntensity(Mat cameraFrame);
     void process();
-    void updateGlobals( );
 public:
     cv::VideoCapture * camStream;
-    cv::CascadeClassifier cascadeClassifier;
+    BackgroundSubtractorMOG2 bg;
+    Mat frame;
+    Mat back;
+    Mat fore;
+    vector<pair<Point,double> > palmCenters;
+    Point filteredPalmCenter;
 };
 
 #endif
