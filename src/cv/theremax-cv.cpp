@@ -143,11 +143,11 @@ void TheremaxCV::process()
                     if( defects.size() >= 3 )
                     {
                         vector<Point> palmPoints;
-                        for ( int j = 0; j < defects.size(); j++ )
+                        for ( int k = 0; k < defects.size(); k++ )
                         {
-                            int startidx = defects[j][0];
-                            int endidx = defects[j][1];
-                            int faridx = defects[j][2];
+                            int startidx = defects[k][0];
+                            int endidx = defects[k][1];
+                            int faridx = defects[k][2];
                             
                             Point ptStart( tcontours[0][startidx] );
                             Point ptEnd( tcontours[0][endidx] );
@@ -210,29 +210,62 @@ void TheremaxCV::process()
                         palmCenter.y /= palmCenters.size();
                         radius /= palmCenters.size();
                         
-                        if (palmCenter.x > CENTER_MAX)
+                        int noOfFingers = 0;
+                        for ( int k = 0; k < defects.size(); k++ )
                         {
-                            palmCenter.x = CENTER_MAX;
-                        }
-                        else if (palmCenter.x < CENTER_MIN)
-                        {
-                            palmCenter.x = CENTER_MIN;
+                            int startidx = defects[k][0];
+                            int endidx = defects[k][1];
+                            int faridx = defects[k][2];
+                            
+                            Point ptStart( tcontours[0][startidx] );
+                            Point ptEnd( tcontours[0][endidx] );
+                            Point ptFar( tcontours[0][faridx] );
+                            
+                            double Xdist = sqrt(dist(palmCenter, ptFar));
+                            double Ydist = sqrt(dist(palmCenter, ptStart));
+                            double length = sqrt(dist(ptFar, ptStart));
+                            
+                            double retLength = sqrt(dist(ptEnd, ptFar));
+                            // play with these thresholds to improve performance
+                            if(length<=3*radius&&Ydist>=0.4*radius&&length>=10&&retLength>=10&&max(length,retLength)/min(length,retLength)>=0.8)
+                            {
+                                if(min(Xdist,Ydist)/max(Xdist,Ydist)<=0.8)
+                                {
+                                        if((Xdist>=0.1*radius&&Xdist<=1.3*radius&&Xdist<Ydist)||(Ydist>=0.1*radius&&Ydist<=1.3*radius&&Xdist>Ydist))
+                                        {
+                                            line( frame, ptEnd, ptFar, Scalar(0,255,0), 1 );
+                                            noOfFingers++;
+                                        }
+                                }
+                            }
+
+                            noOfFingers = min(5, noOfFingers);
+                            cout << "NO OF FINGER: " << noOfFingers << endl;
                         }
                         
-                        if (palmCenter.y > CENTER_MAX)
-                        {
-                            palmCenter.y = CENTER_MAX;
-                        }
-                        else if (palmCenter.y < CENTER_MIN)
-                        {
-                            palmCenter.y = CENTER_MIN;
-                        }
-                        
-                        filteredPalmCenter.x = (alpha * filteredPalmCenter.x) + ((1 - alpha) * palmCenter.x);
-                        filteredPalmCenter.y = (alpha * filteredPalmCenter.y) + ((1 - alpha) * palmCenter.y);
-                        
-                        
-                        cerr << filteredPalmCenter << endl;
+                        // if (palmCenter.x > CENTER_MAX)
+                        // {
+                        //     palmCenter.x = CENTER_MAX;
+                        // }
+                        // else if (palmCenter.x < CENTER_MIN)
+                        // {
+                        //     palmCenter.x = CENTER_MIN;
+                        // }
+                        // 
+                        // if (palmCenter.y > CENTER_MAX)
+                        // {
+                        //     palmCenter.y = CENTER_MAX;
+                        // }
+                        // else if (palmCenter.y < CENTER_MIN)
+                        // {
+                        //     palmCenter.y = CENTER_MIN;
+                        // }
+                        // 
+                        // filteredPalmCenter.x = (alpha * filteredPalmCenter.x) + ((1 - alpha) * palmCenter.x);
+                        // filteredPalmCenter.y = (alpha * filteredPalmCenter.y) + ((1 - alpha) * palmCenter.y);
+                        // 
+                        // 
+                        // cerr << filteredPalmCenter << endl;
                     }
                 }
             }
@@ -240,12 +273,13 @@ void TheremaxCV::process()
         
         // cerr << contours.size() << endl;
     }
+    if (!frame.empty())
+    {
+        imshow("Frame", frame);
+        imshow("Background",back);
+    }
     
-    
-
-
-
-    waitKey(30);
+    waitKey(10);
 }
 
 // void TheremaxCV::detectHand( Mat frame )
