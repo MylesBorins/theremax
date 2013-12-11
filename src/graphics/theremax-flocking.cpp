@@ -10,17 +10,15 @@
 #include "theremax-globals.h"
 #include "x-fun.h"
 
-YTimeInterval dtCount = 0;
-
 THEREMAXBoid::THEREMAXBoid()
 {
+    dtCount = 0;
     ALPHA.set(1,1,1);
     this->spark = new THEREMAXSpark;
-    spark->set(0, 0.1, 0.5);
-    // spark->col.set(0,XFun::rand2f(0.5, 0.6),.5);
+    
     spark->ALPHA.value = 0.1;
-    spark->ALPHA.goal = XFun::rand2f(0.2, 0.6);
-    spark->setSize(XFun::rand2f(0.05, 0.2));
+    spark->ALPHA.goal = XFun::rand2f(0.5, 0.8);
+    spark->setSize(XFun::rand2f(0.05, 0.4));
     
     this->addChild(spark);
 }
@@ -50,7 +48,6 @@ void THEREMAXBoid::update( YTimeInterval dt )
     this->loc = this->loc + this->vel * dt;
     return;
 };
-
 
 Vector3D THEREMAXFlock::centerMass(THEREMAXBoid * boid)
 {
@@ -168,6 +165,7 @@ void THEREMAXFlock::boundVelocity(THEREMAXBoid * boid)
 
 void THEREMAXFlock::init(int count)
 {
+    dtCount = 0;
     for (int i = 0; i < count; i++)
     {
         THEREMAXBoid * boid = new THEREMAXBoid;

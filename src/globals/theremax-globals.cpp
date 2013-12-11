@@ -40,6 +40,8 @@ FAUSTFLOAT ** Globals::foutputs = new FAUSTFLOAT*[THEREMAX_NUMCHANNELS];
 
 stk::BiQuad * Globals::biquad = NULL;
 
+GLboolean Globals::ChangeColor = false;
+
 GLboolean Globals::fullscreen = DEFAULT_FULLSCREEN;
 GLboolean Globals::blendScreen = DEFAULT_BLENDSCREEN;
 

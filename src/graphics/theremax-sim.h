@@ -9,6 +9,7 @@
 #define __THEREMAX_SIM_H__
 
 #include "theremax-entity.h"
+#include "theremax-globals.h"
 
 
 

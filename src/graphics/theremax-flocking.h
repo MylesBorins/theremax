@@ -36,6 +36,7 @@ public:
     // alpha ramp
     THEREMAXSpark * spark;
     Vector3D ALPHA;
+    YTimeInterval dtCount;
 };
 
 //-----------------------------------------------------------------------------
@@ -52,7 +53,6 @@ public:
     //set
     void set();
     void init(int count);
-    
 public:
     Vector3D centerMass(THEREMAXBoid * boid);
     Vector3D collisionDetect(THEREMAXBoid * boid);
@@ -67,5 +67,6 @@ public:
 public:
     // alpha ramp
     Vector3D ALPHA;
+    YTimeInterval dtCount;
 };
 #endif

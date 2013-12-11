@@ -258,8 +258,17 @@ void YEntity::dumpSceneGraph( int depth )
 //-----------------------------------------------------------------------------
 void YEntity::recursiveSetColor( const Vector3D & newCol )
 {
+    double flex = 0.1;
+    // Give it a bit of flex
+    Vector3D randCol = Vector3D(
+        
+        XFun::clamp(XFun::rand2f(newCol.x - flex, newCol.x + flex), 0, 1),
+        XFun::clamp(XFun::rand2f(newCol.y - flex, newCol.y + flex), 0, 1),
+        XFun::clamp(XFun::rand2f(newCol.z - flex, newCol.z + flex), 0, 1)
+    );
+        
     // set color
-    setColor( newCol );
+    setColor( randCol );
     // iterate through children
     for( std::vector<YEntity*>::iterator ei = children.begin();
          ei != children.end(); ++ei )

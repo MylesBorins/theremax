@@ -80,6 +80,12 @@ void THEREMAXSim::systemCascade()
     // check paused
     if( !m_isPaused )
     {
+        if ( Globals::ChangeColor )
+        {
+            Globals::bgColor.update(Vector3D(0.5,0,.8));
+            m_gfxRoot.recursiveSetColor(Globals::ourYellow);
+            Globals::ChangeColor = false;
+        }
         // update the world with a fixed timestep
         m_gfxRoot.updateAll( timeElapsed );
     }

@@ -452,12 +452,6 @@ void keyboardFunc( unsigned char key, int x, int y )
             break;
         case 'r':
         {
-            // for( int i = 0; i < g_bokehs.size(); i++ )
-            // {
-            //     YBokeh * bokeh = g_bokehs[i];
-            //     bokeh->iLoc.update( Vector3D(XFun::rand2f(-2,2),XFun::rand2f(-1,1), XFun::rand2f(-1,1) ) );
-            //     bokeh->iRGB.update( Vector3D(XFun::rand2f(0,.3),XFun::rand2f(0,.3), XFun::rand2f(0,.3)) );
-            // }
             break;
         }
         case 'a':
@@ -553,37 +547,6 @@ void keyboardFunc( unsigned char key, int x, int y )
             fprintf( stderr, "[theremax]: fog density:%f\n", Globals::fog_density );
             glFogf(GL_FOG_DENSITY, Globals::fog_density);
             break;
-            
-            //        case 'A':
-            //        case 'B':
-            //        case 'C':
-            //        case 'D':
-            //        case 'E':
-            //        case 'F':
-            //        case 'G':
-            //        case 'H':
-            //        case 'I':
-            //        case 'J':
-            //            Globals::core->noteOn( Globals::selectedVoice, key - 'A' + 48 );
-            //            break;
-            //
-            //        case '6':
-            //        case '7':
-            //        case '8':
-            //        case '9':
-            //            Globals::selectedVoice = key - '6';
-            //            break;
-            
-            //        case 'k':
-            //            for( int i = 0; i < Globals::hud->histoVoice().numBins(); i++ )
-            //                Globals::hud->histoVoice().bin(i)->setValue( XFun::rand2f(.1,.9) );
-            //            for( int i = 0; i < Globals::hud->histoPitch().numBins(); i++ )
-            //                Globals::hud->histoPitch().bin(i)->setValue( XFun::rand2f(.1,.9) );
-            //            break;
-            
-            //        case 'V':
-            //            Globals::skore->start();
-            //            break;
     }
     
     // check if something else is handling viewing

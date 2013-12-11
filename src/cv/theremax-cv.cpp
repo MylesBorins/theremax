@@ -63,6 +63,11 @@ void TheremaxCV::process()
         double brightness;
         _getBrightness(cameraFrame, brightness);
 
+        if (brightness > 1)
+        {
+            Globals::ChangeColor = true;
+        }
+
         // One Pole Lowpass filter
         Globals::cvIntensity = (alpha * Globals::cvIntensity) + ((1 - alpha) * pow(brightness, 3));
         
