@@ -7,8 +7,8 @@
 //-----------------------------------------------------------------------------
 #include "theremax-cv.h"
 
-double intensityMin = 1;
-double intensityMax = 0;
+// set alpha to 0.5 for low pass filter
+double alpha = 0.5f;
 
 void _getBrightness(const Mat& frame, double& brightness)
 {
@@ -57,23 +57,14 @@ void TheremaxCV::process()
     
     camStream->read(cameraFrame);
     
-    if (cameraFrame.dims != 0)
+    if (!cameraFrame.empty())
     {
         Mat frameHSV;
         double brightness;
         _getBrightness(cameraFrame, brightness);
-        if (brightness > intensityMax)
-        {
-            intensityMax = brightness;
-        }
-        if (brightness < intensityMin)
-        {
-            intensityMin = brightness;
-        }
-        // cerr << "pre: " << brightness;
-        // cerr << " post: " << brightness << endl;
-        Globals::cvIntensity *= 0.5;
-        Globals::cvIntensity += pow(brightness, 3) * 0.5;
+
+        // One Pole Lowpass filter
+        Globals::cvIntensity = (alpha * Globals::cvIntensity) + ((1 - alpha) * pow(brightness, 3));
         
         if (Globals::cvIntensity > 0.50)
         {
@@ -100,9 +91,6 @@ void TheremaxCV::process()
         // Now some of the upper edges
         Globals::reverb->fhslider6 = tuning;
         Globals::reverb->fhslider5 = tuning - 200;
-        
-        Globals::freq = Globals::freq * 0.8;
-        Globals::freq += pow((Globals::cvIntensity * 110 * 0.2), 2);
     }
 }
 

@@ -60,9 +60,6 @@ public:
     
     static stk::BiQuad * biquad;
     
-    // global freq
-    static SAMPLE freq;
-    
     // global reverb
     static Reverb * reverb;
     
@@ -88,6 +85,9 @@ public:
     static GLfloat blendRed;
     // fill mode
     static GLenum fillmode;
+    
+    static GLboolean ChangeColor;
+    
     // background color
     static iSlew3D bgColor;
     // view stuff

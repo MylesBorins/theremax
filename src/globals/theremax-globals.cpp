@@ -14,7 +14,7 @@
 #define DEFAULT_WINDOW_HEIGHT 720
 #define DEFAULT_BLENDSCREEN   FALSE
 #define DEFAULT_FOG           FALSE
-#define DEFAULT_VERSION       "1.0.0"
+#define DEFAULT_VERSION       "1.1.0"
 
 THEREMAXSim * Globals::sim = NULL;
 
@@ -31,8 +31,7 @@ SAMPLE * Globals::audioBufferWindow = NULL;
 unsigned int Globals::lastAudioBufferFrames = 0;
 unsigned int Globals::lastAudioBufferChannels = 0;
 
-SAMPLE Globals::cvIntensity = 1;
-SAMPLE Globals::freq = 220;
+SAMPLE Globals::cvIntensity = 0.5;
 
 Reverb * Globals::reverb = NULL;
 
@@ -78,5 +77,5 @@ Vector3D Globals::ourPurple( .6, .25, .6 );
 
 std::string Globals::path = "";
 std::string Globals::relpath = "data/texture/";
-std::string Globals::datapath = "";
+std::string Globals::datapath = "data/";
 std::string Globals::version = DEFAULT_VERSION;
