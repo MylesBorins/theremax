@@ -246,12 +246,6 @@ void initialize_simulation()
     // instantiate simulation
     Globals::sim = new THEREMAXSim();
     
-    // THEREMAXSpark * spark = new THEREMAXSpark();
-    
-    // spark->set(0, 1, 0.5);
-    
-    // THEREMAXBoid * boid = new THEREMAXBoid();
-    
     vector<THEREMAXFlock *> flockVector;
     
     for (int i = 0; i < 2000; i++)
@@ -261,10 +255,6 @@ void initialize_simulation()
         flock->loc.set(0.,3.,0.);
         Globals::sim->root().addChild(flock);
     }
-    
-    // spark->loc.set(0.5,0.5,0.5);
-    
-    // Globals::sim->root().addChild( spark );
 }
 
 
@@ -296,7 +286,7 @@ void theremax_about()
     theremax_line();
     fprintf( stderr, "   | by Myles Borins\n" );
     fprintf( stderr, "   | Stanford University | CCRMA\n" );
-    fprintf( stderr, "   | http://ccrma.stanford.edu/~ge/\n" );
+    fprintf( stderr, "   | http://thealphanerd.io/\n" );
     fprintf( stderr, "   | version: %s\n", Globals::version.c_str() );
 }
 
@@ -317,8 +307,8 @@ void theremax_keys()
     fprintf( stderr, "  'f' - toggle fog rendering\n" );
     fprintf( stderr, "  '[' and ']' - rotate automaton\n" );
     fprintf( stderr, "  '-' and '+' - zoom away/closer to center of automaton\n" );
-    fprintf( stderr, "  'n' and 'm' - adjust amount of blending\n" );
-    fprintf( stderr, "  '<' and '>' - adjust fog density\n" );
+    // fprintf( stderr, "  'n' and 'm' - adjust amount of blending\n" );
+    // fprintf( stderr, "  '<' and '>' - adjust fog density\n" );
     fprintf( stderr, "  ''' - bg: white\n" );
     fprintf( stderr, "  ';' - bg: black\n" );
     fprintf( stderr, "  ',' - bg: blue\n" );
