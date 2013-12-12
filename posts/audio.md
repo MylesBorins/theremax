@@ -11,7 +11,7 @@
 ---
 
 >###You got yourself a stew
->The dsp for this project was assembled by taking parts from a number of different libraries.  An fdn reverb from Faust (the model of which you can see below), a bi-quad filter from stk, butterworth lopass coefficients from Flocking, audio processing from rt-audio, and the MCD api as the glue to bind it all together
+>The dsp for this project was assembled by taking parts from a number of different libraries.  An fdn reverb from Faust (the model of which you can see below), a bi-quad filter from stk, butterworth lopass coefficients from Flocking, audio processing from rt-audio, and the MCD api as the glue to bind it all together. 
 
 ---
 
