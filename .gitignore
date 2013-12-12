@@ -19,3 +19,8 @@ node_modules
 # Cabin-specific ignored files
 dist
 .grunt
+CMakeCache.txt
+CMakeFiles/
+Makefile
+bin/
+cmake_install.cmake
