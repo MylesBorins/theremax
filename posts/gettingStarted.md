@@ -7,7 +7,7 @@
 ---
 
 <br>
-![Take This](images/zelda-take-this.png)
+![Take This](/images/zelda-take-this.png)
 <br>
 
 ---
