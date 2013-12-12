@@ -53,3 +53,73 @@ This number was then scaled in various ways (with some magic numbers) to change 
 
 Fairly quickly I found that the expression of this algorithm was fairly limited, and that if I wanted to really emulate the experience of playing a theremin I would need to implement a computer vision algorithm that would give me exact coordinates as opposed to average brightness.
 
+### Haar Cascade Classifiers
+
+My first attempt to implement hand tracking was to use a HAAR Cascade classifier trained to recognize hands.  I decided to attempt this method after seeing how quickly Haar Cascades could be used to track faces within a camera frame.  This code was written by modifying the openCV example for face tracking.
+
+```c++
+void TheremaxCV::detectHand( Mat frame )
+{    
+    vector<Rect> hands;
+    Mat frameGray;
+    
+    cvtColor( frame, frameGray, CV_BGR2GRAY );
+    equalizeHist( frameGray, frameGray );
+    
+    handCascade.detectMultiScale( 
+        frame,
+        hands,
+        1.1,
+        2,
+        0 | CV_HAAR_SCALE_IMAGE,
+        Size(30, 30)
+    );
+        
+    cerr << hands.size() << endl;
+}
+```
+
+Unfortunately no matter what haarcascade I used, and what modifications I made to the detectMultiScale function I could not get a reliable read of hands due to many false positives.
+
+###Convex Points
+
+The next approach I attempted to implement was a combination of a number of algorithms including Gaussian Mixture-based Background/Foreground Segmentation and The Sklanskys algorithm in order to detect convex points.
+
+This was based on [this paper](http://sanjayslnarayanan.files.wordpress.com/2013/08/handtrackingopencv.pdf), the source code can be found [here](https://github.com/jujojujo2003/OpenCVHandGuesture)
+
+While I managed to get the algorithm compiling and running I was unable to get reliable results similar to those shown in the original report.
+
+```c++
+vector<vector<Point> > contours;
+
+// get the frame
+camStream->read(this->frame);
+
+if ( !frame.empty() )
+{
+    if ( backgroundFrame > 0)
+    {
+        bg.operator () (frame,fore);
+        backgroundFrame--;
+    }
+    else
+    {
+        bg.operator () (frame, fore, 0);
+    }
+
+    //Get background image to display it
+    bg.getBackgroundImage(back);
+
+    //Enhance edges in the foreground by applying erosion and dilation
+    erode(fore,fore,Mat());
+    dilate(fore,fore,Mat());
+
+    //Find the contours in the foreground
+    findContours(fore,contours,CV_RETR_EXTERNAL,CV_CHAIN_APPROX_NONE);
+}
+```
+
+Above is the code used to find the initial contours of the image, these contours are then used to find hands / fingers.
+
+### Round and back again
+In the end I decided to move back to my original algorithm.  It would appear that doing hand tracking on a stock webcam is less than desirable if one is not in perfect conditions.  There was one last algorithm I was researching using adaptive histograms and the camshift algorithm, [sample code](https://github.com/blr246/adaptive-histogram-camshift), although I did not have time to attempt to implement it.
