@@ -1,7 +1,7 @@
 {
   title: "Getting Started",
   date:  "2013-9-16",
-  description: "Are you Ready to Theremin to the Max?"
+  description: "cmake | homebrew"
 }
 
 <br>

@@ -36,10 +36,5 @@ Initially I compield a native qt / core-audio application to gather a number of 
 ![example tuning](/images/example-tuning.png)
 <br>
 
-Once I found a sound that was worth exploring I used faust to compile the reverb to a C++ function using the faust minimal.cpp architecture file.  After breaking out the headers from the compiled cpp file I was able to simple create a Reverb object and call its compute function to get an audio buffer.
+Once I found a sound that was worth exploring I used faust to compile the reverb to a C++ function using the faust minimal.cpp architecture file.  After breaking out the headers from the compiled cpp file I was able to simple create a Reverb object and call its compute function to get an audio buffer.  This part was a little bit tricky as the way faust is expecting audio buffer to be an array of buffer which is a different interface than rt-audio's method of interlacing all channels on a single buffer.
 
-
-
-Some more
-
-and some more
