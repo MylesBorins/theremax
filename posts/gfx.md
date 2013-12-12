@@ -15,7 +15,7 @@
 
 ---
 
-The architecture for the graphics engine primarily comes from the MCD api.  While there are a number of object that make up the engine the core of its power comes from the Vector3D and Entity Classes.  A top level Entity called simulation is used to cascade all update and renders across a graph with the simulation being the top level parent.
+The architecture for the graphics engine primarily comes from the MCD api.  While there are a number of object that make up the engine the core of its power comes from the Vector3D and Entity Classes.  A top level Entity called simulation is used to cascade all updates and renders across the graph of entities.
 
 The flocking algorithm was implemented following pseudocode found [here](http://www.kfish.org/boids/pseudocode.html).  
 
