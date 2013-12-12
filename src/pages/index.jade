@@ -5,23 +5,15 @@ block head
 
 block content
   h5
-    pre.theremax
-            |   __  .__                                                
-            | _/  |_|  |__   ___________   ____   _____ _____  ___  ___
-            | \   __\  |  \_/ __ \_  __ \_/ __ \ /     \\__  \ \  \/  /
-            |  |  | |   Y  \  ___/|  | \/\  ___/|  Y Y  \/ __ \_>    < 
-            |  |__| |___|  /\___  >__|    \___  >__|_|  (____  /__/\_ \
-            |            \/     \/            \/      \/     \/      \/
-            |            
-  hr
-  br
-  br
-  img.bigOne(src="#{data.baseUrl}images/theremaxFlock.png" alt="Flock")
-  br
-  br
-  br
-  hr
-  //- br
+    img.bigOne(src="#{data.baseUrl}images/theremaxFlock.png" alt="Flock")
+    br
+    br
+    hr
+
+ 
+  
   each post in posts
     if post.title === "Github Install"
       .post-body.markdown!= post.content
+
+  
