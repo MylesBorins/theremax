@@ -123,7 +123,7 @@ div.about-big {
     outline-width: 10px;
     margin-left: auto;
     margin-right: auto;
-    display: block;;
+    display: block;
 
     width: 40%;
   }
@@ -145,4 +145,10 @@ div.navbartoo {
     width: 150px;
     display: inline-block;
   }
+}
+
+iframe {
+  width: 100%;
+  float: left;
+  height: 300px;
 }
