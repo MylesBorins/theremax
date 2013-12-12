@@ -4,4 +4,4 @@
   description: "Getting the application compiled a running"
 }
 
-Theremax has a number of dependencies, a couple of which you will 
+Theremax is compiled using cmake, if you do not have it please install it.
