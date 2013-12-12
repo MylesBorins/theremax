@@ -20,10 +20,11 @@
 ---
 
 ##Step 0: List of dependencies
-### All Platforms
 * cmake
 * openGL
+* GLUT
 * openCV
+* jack (linux only)
 
 ##Step 1: Install a package manager
 
