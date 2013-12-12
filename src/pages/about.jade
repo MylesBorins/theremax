@@ -4,10 +4,11 @@ block head
   title= "About"
 
 block content
-  each post in posts
-    if (post.title === "Getting Started")
-      div.about-big
-        mixin post(post)
+  mixin aboutHead("Getting Started")
+  //- each post in posts
+  //-   if (post.title === "Getting Started")
+  //-     div.about-big
+  //-       mixin post(post)
   #bricks
     each post in posts
         if (post.title !== "Github Install" && post.title !== "Getting Started")

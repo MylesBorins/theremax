@@ -15,6 +15,23 @@ mixin post(post)
   mixin postHead(post)
   .post-body.markdown!= post.content
 
+mixin aboutHead(title)
+  each post in posts
+    if (post.title === title)
+      div.about-big
+        mixin postHead(post)
+  hr
+  div.navbartoo
+    ul.post-head.group
+      each post in posts
+        if (post.title !== "Github Install" && post.title !== title)
+          li 
+            a(href="#{data.baseUrl}#{post.url}")= post.title
+  each post in posts
+    if (post.title === title)
+      div.about-big
+        .post-body.markdown!= post.content
+
 doctype 5
 html
   head

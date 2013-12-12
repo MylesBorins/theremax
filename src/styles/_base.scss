@@ -128,3 +128,21 @@ div.about-big {
     width: 40%;
   }
 }
+
+div.navbartoo {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  ul {
+    list-style-type: none; /*to remove bullets*/
+    text-align: center;
+    padding: 0px;
+    zoom: 1;
+    overflow: hidden;
+  }
+  li {
+    padding: 2px;
+    width: 150px;
+    display: inline-block;
+  }
+}
