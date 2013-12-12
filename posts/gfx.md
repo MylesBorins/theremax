@@ -17,4 +17,90 @@
 
 The architecture for the graphics engine primarily comes from the MCD api.  While there are a number of object that make up the engine the core of its power comes from the Vector3D and Entity Classes.  A top level Entity called simulation is used to cascade all update and renders across a graph with the simulation being the top level parent.
 
-The flocking algorithm was implemented following pseudocode found [here](http://www.kfish.org/boids/pseudocode.html)
+The flocking algorithm was implemented following pseudocode found [here](http://www.kfish.org/boids/pseudocode.html).  
+
+The first class created was a boid.  When instantiated the boid object that creates an instance of a flare, which is a cube with position, alpha, and velocity.
+
+```c++
+class THEREMAXBoid : public YEntity
+{
+public:
+    // constructor
+    THEREMAXBoid();
+    
+public:
+    //set
+    void set();
+    
+public:
+    // update
+    void update( YTimeInterval dt);
+    // void render();
+    
+public:
+    // alpha ramp
+    THEREMAXSpark * spark;
+    Vector3D ALPHA;
+};
+```
+
+The second class created was a Flock, a flock was comprised of a vector of boids and a number of rules.
+
+```c++
+class THEREMAXFlock : public YEntity
+{
+public:
+    // constructor
+    THEREMAXFlock() {} ;
+    
+public:
+    //set
+    void set();
+    void init(int count);
+    
+public:
+    Vector3D centerMass(THEREMAXBoid * boid);
+    Vector3D collisionDetect(THEREMAXBoid * boid);
+    Vector3D potentialVelocity(THEREMAXBoid * boid);
+    Vector3D tendToPlace(THEREMAXBoid * boid);
+    Vector3D boundPosition(THEREMAXBoid * boid);
+    void boundVelocity(THEREMAXBoid * boid);
+    
+public:
+    // alpha ramp
+    Vector3D ALPHA;
+};
+```
+
+When update was called on a boid it would call its parents rules upon itself, allowing the flock to iterate across all boids in the vector and update the velocity of the boid accordingly.
+
+```c++
+void THEREMAXBoid::update( YTimeInterval dt )
+{
+    dtCount += dt;
+    if (dtCount > (1 / THEREMAX_SRATE) * 30)
+    {
+        Vector3D v1, v2, v3, v4, v5, v6;
+
+        // slew
+        ALPHA.interp( dt );
+        this->alpha = ALPHA.value;
+    
+        v1 = ((THEREMAXFlock *)parent)->centerMass(this);
+        v2 = ((THEREMAXFlock *)parent)->collisionDetect(this);
+        v3 = ((THEREMAXFlock *)parent)->potentialVelocity(this);
+        v4 = ((THEREMAXFlock *)parent)->tendToPlace(this);
+        v5 = ((THEREMAXFlock *)parent)->boundPosition(this);
+        ((THEREMAXFlock *)parent)->boundVelocity(this);
+
+        this->vel = (this->vel + v1 + v2 + v3 + v4 + v5);
+        dtCount = 0;
+    }
+    this->loc = this->loc + this->vel * dt;
+    return;
+};
+```
+
+At first I attempted to make a single flock with 1000's of boids but found that my simulation was starting to severely slow down.  This problem was solved by making a number of flocks with smaller numbers of boids.  This optimization shorten the large arrays that were being iterated across for every boid in the system and allowed for far more boids in the system.  These flocks are initially placed in a symmetrical pattern which results in quite stunning pattern when the simulation is left alone.
+
+There is a branch in the git repo called metaFlock that implements an exploration into this optimization.  If you overload the constructor for Flocking with two arguments a metaFlock is created.  A metaFlock contains a vector of Flocks, each flock having a number of boids.  I would like to further explore this metaFlock concept by modifying the current rules to iterate not only across all boids in the system, but also the parent vector of flocks, allowing for a more dynamic system.

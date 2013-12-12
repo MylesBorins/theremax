@@ -123,3 +123,5 @@ Above is the code used to find the initial contours of the image, these contours
 
 ### Round and back again
 In the end I decided to move back to my original algorithm.  It would appear that doing hand tracking on a stock webcam is less than desirable if one is not in perfect conditions.  There was one last algorithm I was researching using adaptive histograms and the camshift algorithm, [sample code](https://github.com/blr246/adaptive-histogram-camshift), although I did not have time to attempt to implement it.
+
+If you would like to experiment with the convex based hand tracking check out the cv2 branch in the git repo
