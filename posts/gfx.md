@@ -4,4 +4,3 @@
   description:  "openGL | MPD api | physics"
 }
 
-How to get Started with it

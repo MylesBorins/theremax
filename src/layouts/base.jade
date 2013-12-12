@@ -27,6 +27,7 @@ mixin aboutHead(title)
         if (post.title !== "Github Install" && post.title !== title)
           li 
             a(href="#{data.baseUrl}#{post.url}")= post.title
+  hr
   each post in posts
     if (post.title === title)
       div.about-big

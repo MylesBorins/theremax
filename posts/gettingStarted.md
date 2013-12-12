@@ -4,8 +4,6 @@
   description: "Are you Ready to Theremin to the Max?"
 }
 
----
-
 <br>
 ![Take This](/images/zelda-take-this.png)
 <br>
