@@ -16,3 +16,5 @@
 ---
 
 ###Average Brightness
+
+My original algorithm for tracking the hand was to calculate the average 
