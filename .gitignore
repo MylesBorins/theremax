@@ -4,3 +4,6 @@ cmake_install.cmake
 bin/
 Makefile
 src/Makefile
+.grunt/
+.sass-cache/
+dist/
