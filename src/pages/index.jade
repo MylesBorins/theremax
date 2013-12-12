@@ -21,3 +21,7 @@ block content
   br
   br
   hr
+  //- br
+  each post in posts
+    if post.title === "Github Install"
+      .post-body.markdown!= post.content
