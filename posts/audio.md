@@ -18,7 +18,7 @@
 <iframe src="/images/Reverb-svg/process.svg" ></iframe>
 
 ---
-The above Physical Model of an FDN reverb was originally written by Julius Smith and is included with the faust distribution as reverb_designer. Below is the original faust code.
+The above Physical Model of an FDN reverb was originally written by Julius Smith and is included with the [faust](http://faust.grame.fr/) distribution as reverb_designer. Below is the original faust code.
 
 ```
 el = library("effect.lib");

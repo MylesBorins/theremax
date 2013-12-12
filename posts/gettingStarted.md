@@ -1,5 +1,5 @@
 {
-  title: "Getting Started",
+  title: "getting started",
   date:  "2013-9-16",
   description: "cmake | homebrew"
 }
