@@ -7,5 +7,5 @@ block content
   each post in posts
     if (post.title === "Getting Started")
       mixin post(post)
-    else
-      mixin postHead(post)
+    if (post.title !== "Github Install" && post.title !== "Getting Started")
+      mixin postHeadSmall(post)

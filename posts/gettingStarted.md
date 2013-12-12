@@ -4,4 +4,4 @@
   description: "Getting the application compiled a running"
 }
 
-How to get Started with it
+Theremax has a number of dependencies, a couple of which you will 

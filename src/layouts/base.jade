@@ -5,6 +5,12 @@ mixin postHead(post)
       h1.post-title= post.title
     span.post-date!= post.description
 
+mixin postHeadSmall(post)
+  .post-head.group.small
+    a(href="#{data.baseUrl}#{post.url}")
+      h1.post-title= post.title
+    span.post-date!= post.description
+
 mixin post(post)
   mixin postHead(post)
   .post-body.markdown!= post.content

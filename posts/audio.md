@@ -1,5 +1,6 @@
 {
-  title: "My cool blog post",
+  title: "Synthesis",
+  description: "Using Faust, Stk, and rt-audio",
   date:  "2013-6-3"
 }
 
