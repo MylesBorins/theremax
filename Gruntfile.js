@@ -14,7 +14,7 @@ module.exports = function (grunt) {
           },
           pagination: {
             postsPerPage: 1,
-            listPage: 'src/pages/about.jade'
+            listPage: 'src/pages/archives.jade'
           }
         }
       }

@@ -3,7 +3,7 @@ mixin postHead(post)
   .post-head.group
     a(href="#{data.baseUrl}#{post.url}")
       h1.post-title= post.title
-    span.post-date!= 'Published ' + post.date.toLocaleDateString().split(',').slice(1).join(',')
+    span.post-date!= post.description
 
 mixin post(post)
   mixin postHead(post)
@@ -22,11 +22,11 @@ html
     .center
       nav.group
         h1.name
-          a(href="http://www.thealphanerd.io") Myles Borins
+          a(href="#{data.baseUrl}") Myles Borins
           //- a(href="#www.google.com") Myles Borins
         ul.nav-links
           li.text-link
-            a(href="#{data.baseUrl}archives.html") Research
+            a(href="#{data.baseUrl}about.html") About
           li.text-link
             a(href="http://www.github.com/thealphanerd/theremax") Source Code
       block content
