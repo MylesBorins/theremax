@@ -32,10 +32,32 @@ Assuming you are starting from a brand new laptop the first thing you are going 
 ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
 ```
 
-Once homebrew is install run the command
+Once homebrew is installed run the command
 ```
 brew doctor
 ```
 To get information about what you need to fix on your system before you can start compiling stuff.  This may include things such as installing XCode / command line utilities, changing permissions on /usr/local, and cleaning up hand rolled packages living in /usr/local.
 
 One homebrew is *rarin to brew* you can start installing the dependencies
+
+##Step 2: Install dependencies
+Almost all of the dependencies will be installed by XCode / command line utilities.   The only two remaining dependencies will be cmake (used to generate makefile) and opencv.
+```
+[ theremax $ ] brew install cmake opencv
+```
+
+## Step 3: Stop Compile Time!
+
+The follow commands will download the source and compile the binary
+```bash
+#clone repo
+[ theremax $ ] git clone https://github.com/TheAlphaNerd/theremax.git
+#compile makefile
+[ theremax $ ] cmake .
+#compile binary
+[ theremax $ ] make
+```
+## Step 4: Time to play!
+```
+[ theremax $ ] ./bin/theremax
+```

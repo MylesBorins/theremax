@@ -88,4 +88,32 @@ for (int j = 0; j < THEREMAX_FRAMESIZE; j++)
 }
 ```
 
-The physical model was controlled using the cvIntensity that was constantly being calculated in the computer vision thread.  Every time the thread would update the value of cvIntensity it would also update a number of global values on the reverb model.
+The physical model was controlled using the cvIntensity that was constantly being calculated in the computer vision thread.  Every time the thread would update the value of cvIntensity it would also update a number of global values on the reverb model.  This method allowed the audio thread to be non-blocking, and to get sample based changes even with audio being process by frame.
+
+```c++
+if (Globals::cvIntensity > 0.50)
+{
+    Globals::reverb->fcheckbox0 = false;
+}
+else 
+{
+    Globals::reverb->fcheckbox0 = true;
+}
+
+// Update the reverb ... first the room dimentions
+double exponent = (Globals::cvIntensity * -1) + 1;
+exponent = (exponent * -8) + 1;
+if (exponent > 1)
+{
+    exponent = 1;
+}
+// Room Dimensions / min acoustic ray length
+Globals::reverb->fhslider1 = pow(10, exponent);
+// Room Dimensions / max acoustic ray length
+Globals::reverb->fhslider0 = pow(10, exponent);
+
+double tuning = 1500 + 700 * Globals::cvIntensity;
+// Now some of the upper edges
+Globals::reverb->fhslider6 = tuning;
+Globals::reverb->fhslider5 = tuning - 200;
+```
