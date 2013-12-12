@@ -66,4 +66,28 @@ One of the interesting side effects of switching  projects three times over the 
 
 When I decided to scrap dns_sd and focus on liblo I decide to spend a bit of time cleaning up my make file and create a project that had a seperate directory for src files, include files, and compiled binaries.  While this method of compilation did simplify things, one has to accept that MakeFiles are evil.  They easily spiral out of control and become extremely nasty to maintain as one attempts to make multi-platform applications.
 
-When I began to work with openCV I found a [tutorial](http://docs.opencv.org/doc/tutorials/introduction/linux_gcc_CMake/linux_gcc_CMake.html#linux-gcc-usage) on the openCV site that went step by step guide showing how to create an opencv project using CMake. While CMake has a number of nice features, one in particular in really nice; CMake 
+When I began to work with openCV I found a [tutorial](http://docs.opencv.org/doc/tutorials/introduction/linux_gcc_CMake/linux_gcc_CMake.html#linux-gcc-usage) on the openCV site that went step by step guide showing how to create an opencv project using CMake. While CMake has a number of nice features, one in particular in really nice; CMake Modules.  
+
+```c
+# load packages
+find_package( OpenCV REQUIRED )
+find_package( OpenGL REQUIRED )
+find_package( GLUT REQUIRED )
+```
+
+Modules allow you to load packages based on pre written scripts that manage your compile flags and includes for specific libraries based on the machine that is compiling the application.  
+
+```c
+# Get liblo in there
+find_package( liblo REQUIRED )
+include_directories(${liblo_INCLUDE_DIRS})
+set(LIBS ${LIBS} ${liblo_LIBRARIES})
+
+target_link_libraries( theremax 
+  ${OpenCV_LIBS}
+  ${GLUT_LIBRARY}
+  ${OPENGL_LIBRARY}
+  ${LIBS}
+)
+```
+By default in my project CMake is being used to generate a MakeFile that can be used to compile the application on any platform.  That being said CMake can be used to generate XCode projects, Code::block projects, and Eclipse projects.  In my opinion this makes it an extremely valuable tool, allowing you to write a single script that can generate the necessary files for developers to contribute to the project in their environment of choice.
