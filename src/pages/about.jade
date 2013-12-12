@@ -6,6 +6,9 @@ block head
 block content
   each post in posts
     if (post.title === "Getting Started")
-      mixin post(post)
-    if (post.title !== "Github Install" && post.title !== "Getting Started")
-      mixin postHeadSmall(post)
+      div.about-big
+        mixin post(post)
+  #bricks
+    each post in posts
+        if (post.title !== "Github Install" && post.title !== "Getting Started")
+          mixin postHeadSmall(post)

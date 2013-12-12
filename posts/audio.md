@@ -1,6 +1,6 @@
 {
-  title: "Synthesis",
-  description: "Using Faust, Stk, and rt-audio",
+  title: "audio synthesis",
+  description: "faust | stk | rt-audio",
   date:  "2013-6-3"
 }
 

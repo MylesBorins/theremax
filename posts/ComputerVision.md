@@ -1,6 +1,6 @@
 {
-  title: "Computer Vision with opencv",
+  title: "hand tracking",
   date:   "2013-08-3",
-  description: "Various Approaches to hand tracking"
+  description: "openCV"
 }
 
