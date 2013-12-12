@@ -1,18 +1,14 @@
 extends ../layouts/base
 
 block head
-  title= "My Blog"
+  title= "THEREMX"
 
 block content
-  each post in posts
-    mixin post(post)
-
-  .pagination.group
-    - for (var i = 0; i < pages.length; i++) {
-      - var page = pages[i];
-      - if (i === currentIndex - 1) {
-        a.newer(href="#{data.baseUrl}#{page.url}") Newer &#8594;
-      - } else if (i === currentIndex + 1) {
-        a.older(href="#{data.baseUrl}#{page.url}") &#8592; Older
-      - }
-    - }
+  h5
+    pre.theremax
+            |   __  .__                                                
+            | _/  |_|  |__   ___________   ____   _____ _____  ___  ___
+            | \   __\  |  \_/ __ \_  __ \_/ __ \ /     \\__  \ \  \/  /
+            |  |  | |   Y  \  ___/|  | \/\  ___/|  Y Y  \/ __ \_>    < 
+            |  |__| |___|  /\___  >__|    \___  >__|_|  (____  /__/\_ \
+            |            \/     \/            \/      \/     \/      \/
