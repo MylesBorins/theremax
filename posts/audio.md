@@ -18,12 +18,25 @@
 <iframe src="/images/Reverb-svg/process.svg" ></iframe>
 
 ---
-The above Physical Model of an FDN reverb was originally written by Julius Smith and is included with the faust distribution as reverb_designer. Initially I compield a native qt / core-audio application to gather a number of possible tunings for the reverb.
+The above Physical Model of an FDN reverb was originally written by Julius Smith and is included with the faust distribution as reverb_designer. Below is the original faust code.
+
+```
+el = library("effect.lib");
+
+  N = 16; // Feedback Delay Network (FDN) order (power of 2, 2 to 16)
+ NB =  5; // Number of T60-controlled frequency-bands (3 or more)
+BSO =  3; // Order of each lowpass/highpass bandsplit (odd positive integer)
+
+process = el.fdnrev0_demo(N,NB,BSO);
+```
+
+Initially I compield a native qt / core-audio application to gather a number of possible tunings for the reverb.
 
 <br>
 ![example tuning](/images/example-tuning.png)
 <br>
-that was compiled to c++ from faust.  It   I took the compiled code from faust and broke out all the class definitions into a header file.
+
+Once I found a sound that was worth exploring I used faust to compile the reverb to a C++ function using the faust minimal.cpp architecture file.  After breaking out the headers from the compiled cpp file I was able to simple create a Reverb object and call its compute function to get an audio buffer.
 
 
 
