@@ -61,13 +61,15 @@ bool TheremaxCV::init()
     // oh noes?
     if(!camStream->isOpened())
     {
-        cout << "Cannot open cam" << endl;
+        cerr << "Cannot open cam" << endl;
         return -1;
     }
 
     // setup background subtractor
     bg.set("nmixtures",3);
     bg.set("detectShadows",false);
+    // bg.set("varThresholdGen", 5);
+    // bg.set("backgroundRatio", 0.5);
     
     filteredPalmCenter.x = 0;
     filteredPalmCenter.y = 0;
@@ -86,7 +88,7 @@ void TheremaxCV::process()
     {
         if ( backgroundFrame > 0)
         {
-            bg.operator ()(frame,fore);
+            bg.operator () (frame,fore);
             backgroundFrame--;
         }
         else
@@ -107,7 +109,7 @@ void TheremaxCV::process()
         for ( int i = 0; i < contours.size(); i++ )
         {
             //Ignore all small insignificant areas
-            if(contourArea(contours[i])>=5000)                
+            if(contourArea(contours[i])>=5000)
             {
                 // Draw contour
                 vector<vector<Point> > tcontours;
@@ -240,7 +242,7 @@ void TheremaxCV::process()
                             }
 
                             noOfFingers = min(5, noOfFingers);
-                            cout << "NO OF FINGER: " << noOfFingers << endl;
+                            // cout << "NO OF FINGER: " << noOfFingers << endl;
                         }
                         
                         // if (palmCenter.x > CENTER_MAX)
