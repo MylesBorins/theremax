@@ -92,7 +92,7 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
 bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned channels )
 {
     // initialize
-    if( !XAudioIO::init( 1, 1, srate, frameSize, channels, audio_callback, NULL ) )
+    if( !XAudioIO::init( 0, 1, srate, frameSize, channels, audio_callback, NULL ) )
     {
         // done
         return false;
