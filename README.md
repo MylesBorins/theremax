@@ -1,14 +1,14 @@
-#Theremax
+# Theremax
 
 Primarily written by Myles Borins
 During the Fall of 2013
 A Special thanks to Ge Wong, and William Light
 
-##About
+## About
 
 Do it everyday!
 
-###Dependencies
+### Dependencies
 
 You will need to have a basic compilation tool chain installed.
 
@@ -21,16 +21,16 @@ The project relies on a couple of libraries you can find with most package manag
 
 On Linux it is assuming you have jack
 
-###Compilation
+### Compilation
 
-cmake .
+    cmake .
 
-make
+    make
 
-./bin/theremax
+    ./bin/theremax
 
 !!! Profit !!!
 
-##License
+## License
 
 GPL ~ License included
