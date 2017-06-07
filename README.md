@@ -14,10 +14,10 @@ You will need to have a basic compilation tool chain installed.
 
 The project relies on a couple of libraries you can find with most package managers
 
-*liblo
-*OpenGL
-*GLUT
-*CMake
+- liblo
+- OpenGL
+- GLUT
+- CMake
 
 On Linux it is assuming you have jack
 
