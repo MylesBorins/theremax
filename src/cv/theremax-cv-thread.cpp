@@ -9,7 +9,7 @@
 #include "theremax-cv-thread.h"
 
 TheremaxCV theremaxCV;
-XThread thread;
+XThread xthread;
 
 void *threadfunc(void *parm)
 {
@@ -29,6 +29,6 @@ bool theremax_cv_thread_init( )
 bool theremax_cv_thread_start( )
 {
     theremaxCV.process();
-    thread.start(threadfunc);
+    xthread.start(threadfunc);
     return 1;
 };

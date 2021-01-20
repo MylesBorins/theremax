@@ -33,14 +33,14 @@ void _getBrightness(const Mat& frame, double& brightness)
 TheremaxCV::~TheremaxCV()
 {
     delete camStream;
-    cvDestroyWindow(CAMERA_OUTPUT_WINDOW_NAME);
+    destroyWindow(CAMERA_OUTPUT_WINDOW_NAME);
 }
 
 
 bool TheremaxCV::init()
     
 {    
-    camStream = new cv::VideoCapture(CV_CAP_ANY);
+    camStream = new cv::VideoCapture(CAP_ANY);
 
     if(!camStream->isOpened())
     {
