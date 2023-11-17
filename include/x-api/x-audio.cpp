@@ -139,7 +139,7 @@ bool XAudioIO::init( unsigned int inputDevice,
 
     // first available device
     iParams.deviceId = inputDevice;
-    iParams.nChannels = o_num_channels;
+    iParams.nChannels = 1;
     
     // first available device
     oParams.deviceId = outputDevice;
@@ -149,14 +149,14 @@ bool XAudioIO::init( unsigned int inputDevice,
         // try to open stream
         o_audio->openStream( &oParams, &iParams, RTAUDIO_FLOAT32,
                              srate, &o_num_frames, &audio_callback, userData );
-    } catch ( RtError& e ) {
+    } catch ( RtAudioError& e ) {
         try { // again
             // HACK: bump the oparams device id (on some systems, default in/out devices differ)
             oParams.deviceId++;
             // try to open stream
             o_audio->openStream( &oParams, &iParams, RTAUDIO_FLOAT32,
                                 srate, &o_num_frames, &audio_callback, userData );
-        } catch( RtError & e ) {
+        } catch( RtAudioError & e ) {
             // error message
             cerr << "[x-audio]: cannot initialize real-time audio I/O..." << endl;
             cerr << "[x-audio]: | - " << e.getMessage() << endl;
@@ -213,7 +213,7 @@ bool XAudioIO::start()
     try {
         // try to start the stream
         o_audio->startStream();
-    } catch ( RtError& e ) {
+    } catch ( RtAudioError& e ) {
         // error message
         cerr << "[x-audio]: cannot start real-time audio I/O..." << endl;
         cerr << "[x-audio]: | - " << e.getMessage() << endl;
@@ -243,7 +243,7 @@ void XAudioIO::stop()
         // try to stop the stream
         o_audio->stopStream();
     }
-    catch ( RtError& e ) {
+    catch ( RtAudioError& e ) {
         // error message
         cerr << "[x-audio]: cannot start real-time audio I/O..." << endl;
         cerr << "[x-audio]: | - " << e.getMessage() << endl;

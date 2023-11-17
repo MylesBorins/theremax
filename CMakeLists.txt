@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 2.8)
-project( DisplayImage )
+cmake_minimum_required(VERSION 3.5)
+project( theremax )
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
-message("Configuring for your os bro")
+message("Configuring for your deps")
 
 # Make somewhere to store audio lib stuffs
 set(AUDIO_LIBRARIES "")
@@ -26,29 +26,25 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   message("You are on osx, so lets setup coreaudio")
-  
+
   # setting up foundation can be a pain
   add_definitions(-D__MACOSX_CORE__)
-  
+
   # Setup core audio
   find_path(COREAUDIO_INCLUDE_PATH CoreAudio.h)
   find_library(COREAUDIO_LIBRARY CoreAudio)
-  
+
   # setup core midi
   find_path(COREMIDI_INCLUDE_PATH CoreMidi.h)
   find_library(COREMIDI_LIBRARY CoreMidi)
   find_library(COREFOUNDATION_LIBRARY CoreFoundation)
-  
+
   # setup carbon
   find_library(CARBON_LIBRARY Carbon)
-  
   # setup IOKit
   find_library(IOKIT_LIBRARY IOKit)
-  
   # setup Foundation
   find_library(FOUNDATION_LIBRARY Foundation)
-  
-  
   # setup AppKit
   find_library(APPKIT_LIBRARY AppKit)
   
@@ -68,17 +64,14 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     ${FOUNDATION_LIBRARY}
   )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-# Add local cmake module path
 
 # Require OpenCV, OpenGl, and GLUT using cmake modules
 find_package( OpenCV REQUIRED )
 find_package( OpenGL REQUIRED )
 find_package( GLUT REQUIRED )
 
-# find_package(Boost COMPONENTS system filesystem REQUIRED)
-# include_directories(${Boost_INCLUDE_DIR})
-# link_directories(${Boost_LIBRARY_DIR})
-
+# Properly link GLUT
+include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 
 # Get liblo in there
 find_package( liblo REQUIRED )
@@ -133,9 +126,8 @@ set(CMAKE_BUILD_TYPE Debug)
 set(rtaudio_SOURCES
   ${CMAKE_SOURCE_DIR}/include/rtaudio/RtAudio.cpp
   ${CMAKE_SOURCE_DIR}/include/rtaudio/RtAudio.h
-  ${CMAKE_SOURCE_DIR}/include/rtaudio/RtError.h
 )
-
+# Setup Sources for stk
 set(stk_SOURCES
   ${CMAKE_SOURCE_DIR}/include/stk/Stk.cpp
   ${CMAKE_SOURCE_DIR}/include/stk/Stk.h
@@ -145,7 +137,7 @@ set(stk_SOURCES
   ${CMAKE_SOURCE_DIR}/include/stk/BiQuad.cpp
   ${CMAKE_SOURCE_DIR}/include/stk/BiQuad.h
 )
-
+# Setup Sources for x-api
 set(xyapi_SOURCES
   ${CMAKE_SOURCE_DIR}/include/x-api/x-def.h
   ${CMAKE_SOURCE_DIR}/include/y-api/y-fft.cpp
@@ -165,7 +157,7 @@ set(xyapi_SOURCES
   ${rtaudio_SOURCES}
   ${stk_SOURCES}
 )
-
+# Setup Sources for core
 set(core_SOURCES 
   # Globals
   ${CMAKE_SOURCE_DIR}/src/globals/theremax-globals.h
@@ -199,11 +191,10 @@ set(theremax_SOURCES
 )
 
 add_executable( theremax ${theremax_SOURCES} )
-
 target_link_libraries( theremax 
   ${OpenCV_LIBS}
-  ${GLUT_LIBRARY}
-  ${OPENGL_LIBRARY}
+  ${GLUT_LIBRARIES}
+  ${OPENGL_LIBRARIES}
   # ${Boost_LIBRARIES}
   ${LIBS}
 )

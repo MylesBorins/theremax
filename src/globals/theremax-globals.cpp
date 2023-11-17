@@ -14,7 +14,7 @@
 #define DEFAULT_WINDOW_HEIGHT 720
 #define DEFAULT_BLENDSCREEN   FALSE
 #define DEFAULT_FOG           FALSE
-#define DEFAULT_VERSION       "1.1.0"
+#define DEFAULT_VERSION       "2.0.0"
 
 THEREMAXSim * Globals::sim = NULL;
 
