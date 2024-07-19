@@ -10,6 +10,7 @@
 #include "x-thread.h"
 #include "y-fft.h"
 #include "Reverb.h"
+#include "RtAudio.h"
 #include <iostream>
 using namespace std;
 
@@ -186,5 +187,19 @@ bool theremax_audio_start()
         return false;
     }
     
+    return true;
+}
+
+bool theremax_audio_list_devices()
+{
+    RtAudio audio;
+    unsigned int devices = audio.getDeviceCount();
+    RtAudio::DeviceInfo info;
+    
+    for (unsigned int i = 0; i < devices; i++)
+    {
+        info = audio.getDeviceInfo(i);
+        cout << "Device: " << i << " - " << info.name << endl;
+    }
     return true;
 }

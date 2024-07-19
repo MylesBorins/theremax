@@ -22,5 +22,7 @@ using namespace std;
 bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned channels, unsigned inputDevice, unsigned outputDevice );
 // start audio
 bool theremax_audio_start();
+// list devices
+bool theremax_audio_list_devices();
 
 #endif

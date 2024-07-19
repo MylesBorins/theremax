@@ -18,6 +18,18 @@ int main(int argc, const char **argv)
     unsigned int inputDevice = 0;
     unsigned int outputDevice = 1;
 
+    // check variable for input / output devices
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "--list-devices") == 0) {
+            theremax_audio_list_devices();
+            return 0;
+        } else if (strcmp(argv[i], "--input-device") == 0 && i + 1 < argc) {
+            inputDevice = atoi(argv[++i]);
+        } else if (strcmp(argv[i], "--output-device") == 0 && i + 1 < argc) {
+            outputDevice = atoi(argv[++i]);
+        }
+    }
+
     // Initialize graphics engine / simulation
     if ( !theremax_gfx_init(argc, argv) )
     {
