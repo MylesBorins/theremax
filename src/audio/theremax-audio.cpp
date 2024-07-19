@@ -11,8 +11,8 @@
 #include "y-fft.h"
 #include "Reverb.h"
 #include <iostream>
+#include "RtAudio.h"
 using namespace std;
-
 
 double g_now;
 double g_nextTime;
@@ -187,4 +187,17 @@ bool theremax_audio_start()
     }
     
     return true;
+}
+
+void list_audio_devices() {
+    RtAudio audio;
+    unsigned int devices = audio.getDeviceCount();
+    RtAudio::DeviceInfo info;
+
+    for (unsigned int i = 0; i < devices; i++) {
+        info = audio.getDeviceInfo(i);
+        if (info.probed) {
+            cout << "Device ID: " << i << " - " << info.name << endl;
+        }
+    }
 }

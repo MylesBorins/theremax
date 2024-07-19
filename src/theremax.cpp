@@ -7,14 +7,44 @@
 //
 //-----------------------------------------------------------------------------
 #include <iostream>
+#include <cstdlib>
+#include <cstring>
 #include "theremax-audio.h"
 #include "theremax-cv-thread.h"
 #include "theremax-gfx.h"
+#include "RtAudio.h"
 
 using namespace std;
 
+void list_audio_devices() {
+    RtAudio audio;
+    unsigned int devices = audio.getDeviceCount();
+    RtAudio::DeviceInfo info;
+
+    for (unsigned int i = 0; i < devices; i++) {
+        info = audio.getDeviceInfo(i);
+        if (info.probed) {
+            cout << "Device ID: " << i << " - " << info.name << endl;
+        }
+    }
+}
+
 int main(int argc, const char **argv)
 {
+    unsigned int inputDevice = 0;
+    unsigned int outputDevice = 0;
+
+    for (int i = 1; i < argc; i++) {
+        if (strcmp(argv[i], "--list-devices") == 0) {
+            list_audio_devices();
+            return 0;
+        } else if (strcmp(argv[i], "--input-device") == 0 && i + 1 < argc) {
+            inputDevice = atoi(argv[++i]);
+        } else if (strcmp(argv[i], "--output-device") == 0 && i + 1 < argc) {
+            outputDevice = atoi(argv[++i]);
+        }
+    }
+
     // Initialize graphics engine / simulation
     if ( !theremax_gfx_init(argc, argv) )
     {
@@ -30,7 +60,7 @@ int main(int argc, const char **argv)
     }
 
     // initialize real-time audio
-    if ( !theremax_audio_init( THEREMAX_SRATE, THEREMAX_FRAMESIZE, THEREMAX_NUMCHANNELS ) )
+    if ( !theremax_audio_init( THEREMAX_SRATE, THEREMAX_FRAMESIZE, THEREMAX_NUMCHANNELS, inputDevice, outputDevice ) )
     {
         // error message
         cerr << "[theremax]: cannot initialize real-time audio I/O.." << endl;
