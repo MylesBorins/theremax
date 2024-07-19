@@ -10,6 +10,7 @@
 #include "theremax-globals.h"
 #include "theremax-sim.h"
 #include "theremax-audio.h"
+#include "theremax-cv-thread.h"
 
 #include "x-fun.h"
 #include "x-gfx.h"
@@ -442,6 +443,7 @@ void keyboardFunc( unsigned char key, int x, int y )
     {
         case 'q':
         {
+            theremax_cv_thread_stop();
             exit( 0 );
             break;
         }

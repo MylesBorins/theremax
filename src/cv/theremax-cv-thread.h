@@ -19,5 +19,7 @@ using namespace std;
 bool theremax_cv_thread_init();
 // start cv
 bool theremax_cv_thread_start();
+// stop cv
+bool theremax_cv_thread_stop();
 
 #endif
