@@ -15,6 +15,9 @@ using namespace std;
 
 int main(int argc, const char **argv)
 {
+    unsigned int inputDevice = 0;
+    unsigned int outputDevice = 1;
+
     // Initialize graphics engine / simulation
     if ( !theremax_gfx_init(argc, argv) )
     {
@@ -30,7 +33,7 @@ int main(int argc, const char **argv)
     }
 
     // initialize real-time audio
-    if ( !theremax_audio_init( THEREMAX_SRATE, THEREMAX_FRAMESIZE, THEREMAX_NUMCHANNELS ) )
+    if ( !theremax_audio_init( THEREMAX_SRATE, THEREMAX_FRAMESIZE, THEREMAX_NUMCHANNELS, inputDevice, outputDevice ) )
     {
         // error message
         cerr << "[theremax]: cannot initialize real-time audio I/O.." << endl;

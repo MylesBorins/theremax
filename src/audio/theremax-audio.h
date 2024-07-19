@@ -19,7 +19,7 @@ using namespace std;
 
 
 // init audio
-bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned channels );
+bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned channels, unsigned inputDevice, unsigned outputDevice );
 // start audio
 bool theremax_audio_start();
 

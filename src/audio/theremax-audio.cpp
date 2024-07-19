@@ -89,10 +89,10 @@ static void audio_callback( SAMPLE * buffer, unsigned int numFrames, void * user
 // name: theremax_audio_init()
 // desc: initialize audio system
 //-----------------------------------------------------------------------------
-bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned channels )
+bool theremax_audio_init( unsigned int srate, unsigned int frameSize, unsigned channels, unsigned inputDevice, unsigned outputDevice )
 {
     // initialize
-    if( !XAudioIO::init( 0, 1, srate, frameSize, channels, audio_callback, NULL ) )
+    if( !XAudioIO::init( inputDevice, outputDevice, srate, frameSize, channels, audio_callback, NULL ) )
     {
         // done
         return false;
